@@ -170,6 +170,7 @@ for_window [title="Software Management - dnfdragora"] floating enable border nor
 for_window [class="Mozo"] floating enable border normal
 for_window [class="Mate-control-center"] floating enable border normal
 for_window [class="Firewall-config"] floating enable border normal
+for_window [class="Setroubleshoot"] floating enable border normal
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -179,6 +180,9 @@ bindsym $mod+Shift+c reload
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+
+# reset background image
+bindsym $mod+Shift+i exec nitrogen --restore
 
 # Resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
