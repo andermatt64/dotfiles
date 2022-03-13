@@ -66,33 +66,26 @@ client.background       #FFFFFF
 
 # Floating Window Exceptions
 #   Rules to prevent tiling of specific applications/windows
+
+#   Absorbed from Manjaro i3 variant
 for_window [title="alsamixer"] floating enable border pixel 1
-for_window [class="calamares"] floating enable border normal
 for_window [class="Clipgrab"] floating enable
 for_window [title="File Transfer*"] floating enable
-for_window [class="fpakman"] floating enable
 for_window [class="Galculator"] floating enable border pixel 1
 for_window [class="GParted"] floating enable border normal
 for_window [title="i3_help"] floating enable sticky enable border normal
 for_window [class="Lightdm-settings"] floating enable
 for_window [class="Lxappearance"] floating enable sticky enable border normal
-for_window [class="Manjaro-hello"] floating enable
-for_window [class="Manjaro Settings Manager"] floating enable border normal
 for_window [title="MuseScore: Play Panel"] floating enable
 for_window [class="Nitrogen"] floating enable sticky enable border normal
-for_window [class="Oblogout"] fullscreen enable
-for_window [class="octopi"] floating enable
-for_window [title="About Pale Moon"] floating enable
-for_window [class="Pamac-manager"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="qt5ct"] floating enable sticky enable border normal
 for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
-for_window [class="Simple-scan"] floating enable border normal
 for_window [class="(?i)System-config-printer.py"] floating enable border normal
-for_window [class="Skype"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
-for_window [class="Xfburn"] floating enable
+
+#   MATE exceptions
 for_window [class="Mate-appearance-properties"] floating enable border normal
 for_window [class="Dconf-editor"] floating enable border normal
 for_window [title="Software Management - dnfdragora"] floating enable border normal
@@ -101,6 +94,24 @@ for_window [class="Mate-control-center"] floating enable border normal
 for_window [class="Firewall-config"] floating enable border normal
 for_window [class="Setroubleshoot"] floating enable border normal
 for_window [title="Workspace Switcher Preferences"] floating enable border normal
+
+#   KDE exceptions
+for_window [title="Desktop — Plasma"] kill, floating enable, border none
+for_window [class="plasmashell"] floating enable
+for_window [class="Plasma"] floating enable, border none
+for_window [title="plasma-desktop"] floating enable, border none
+for_window [title="win7"] floating enable, border none
+for_window [class="krunner"] floating enable, border none
+for_window [class="Kmix"] floating enable, border none
+for_window [class="Klipper"] floating enable, border none
+for_window [class="Plasmoidviewer"] floating enable, border none
+for_window [class="(?i)*nextcloud*"] floating disable
+for_window [class="plasmashell" window_type="notification"] floating enable, border none, move right 1580px, move up 670px
+for_window [title="System Settings"] floating enable border normal
+for_window [class="discover"] floating enable border normal
+for_window [class="kmenuedit"] floating enable border normal
+for_window [class="Nvidia-settings"] floating enable border normal
+no_focus [class="plasmashell" window_type="notification"] 
 
 # Modifier key used in conjunction with mouse to move floating windows
 floating_modifier $mod
