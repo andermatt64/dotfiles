@@ -115,7 +115,7 @@ endif
 
 $(REDSHIFT_TARGET): $(REDSHIFT_PHONY_CONFIG)
 ifeq (Linux, $(PLATFORM))
-	@./redshift/install.sh "$(REDSHIFT_CONFIG)" "$(REDSHIFT_TARGET)" "$(REDSHIFT_DIR)"
+	@./redshift/install.sh "$(shell pwd)/$(REDSHIFT_CONFIG)" "$(REDSHIFT_TARGET)" "$(REDSHIFT_DIR)"
 endif
 
 install: $(ALACRITTY_TARGET) $(FISH_TARGET) $(I3_TARGET) $(PICOM_TARGET) $(REDSHIFT_TARGET)
