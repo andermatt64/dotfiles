@@ -21,14 +21,19 @@ PICOM_PHONY_CONFIG := generated/.picom_config
 PICOM_CONFIG := picom/picom.conf
 PICOM_TARGET := $(HOME)/.config/picom.conf
 
-all: $(ALACRITTY_CONFIG) $(FISH_PHONY_CONFIG) $(I3_CONFIG) $(PICOM_PHONY_CONFIG)
+REDSHIFT_PHONY_CONFIG := generated/.redshift_config
+REDSHIFT_CONFIG := redshift/redshift.conf
+REDSHIFT_DIR := $(HOME)/.config/redshift
+REDSHIFT_TARGET := $(REDSHIFT_DIR)/redshift.conf
+
+all: $(ALACRITTY_CONFIG) $(FISH_PHONY_CONFIG) $(I3_CONFIG) $(PICOM_PHONY_CONFIG) $(REDSHIFT_PHONY_CONFIG)
 
 clean:
 	-@rm $(ALACRITTY_TARGET) $(FISH_TARGET)
 	$(info Removed common linked targets)
 
 ifeq (Linux, $(PLATFORM))
-	-@rm $(I3_TARGET) $(PICOM_TARGET)
+	-@rm $(I3_TARGET) $(PICOM_TARGET) $(REDSHIFT_TARGET)
 	$(info Removed Linux-specific linked targets)
 endif
 
@@ -75,6 +80,12 @@ ifeq (Linux, $(PLATFORM))
 	$(info Picom configuration file at $(FISH_CONFIG))
 endif
 
+$(REDSHIFT_PHONY_CONFIG): generated
+ifeq (Linux, $(PLATFORM))
+	@touch $(REDSHIFT_PHONY_CONFIG)
+	$(info Redshift configuration file at $(REDSHIFT_CONFIG))
+endif
+
 $(ALACRITTY_TARGET): $(ALACRITTY_CONFIG) $(FISH_TARGET)
 	@ln -s $(shell pwd)/$(ALACRITTY_CONFIG) $(ALACRITTY_TARGET)
 	$(info Linking $(ALACRITTY_TARGET) to $(ALACRITTY_CONFIG))
@@ -98,4 +109,9 @@ ifeq (Linux, $(PLATFORM))
 	$(info Linking $(PICOM_CONFIG) to $(PICOM_TARGET))
 endif
 
-install: $(ALACRITTY_TARGET) $(FISH_TARGET) $(I3_TARGET) $(PICOM_TARGET)
+$(REDSHIFT_TARGET): $(REDSHIFT_PHONY_CONFIG)
+ifeq (Linux, $(PLATFORM))
+	@./redshift/install.sh "$(REDSHIFT_CONFIG)" "$(REDSHIFT_TARGET)" "$(REDSHIFT_DIR)"
+endif
+
+install: $(ALACRITTY_TARGET) $(FISH_TARGET) $(I3_TARGET) $(PICOM_TARGET) $(REDSHIFT_TARGET)
