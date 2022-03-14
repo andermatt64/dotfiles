@@ -13,8 +13,16 @@ window:
 
 font:
   normal:
-    family: Hack Nerd Font Mono
-    style: Regular
+    family: FiraCode Nerd Font Mono
+    style: Retina
+  bold:
+    style: Bold
+  italic:
+    family: JetBrainsMono Nerd Font Mono
+    style: Italic
+  bold_italic:
+    family: JetBrainsMonoExtraBold Nerd Font Mono
+    style: Extra Bold Italic
   size: 9.0
 
 shell:

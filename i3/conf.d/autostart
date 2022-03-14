@@ -1,0 +1,4 @@
+
+# Autostart applications
+exec_always --no-startup-id nitrogen --restore
+exec --no-startup-id sleep 1; picom -b
