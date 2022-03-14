@@ -1,0 +1,16 @@
+# Platform agnostic settings
+
+cursor:
+  shape: Block
+  blinking: Off
+
+bell:
+  duration: 0
+
+debug:
+  render_timer: false
+  persistent_logging: false
+  log_level: Off
+
+shell:
+  program: fish

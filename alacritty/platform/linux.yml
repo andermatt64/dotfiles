@@ -1,0 +1,19 @@
+# Linux-specific Settings
+
+window:
+  dimensions:
+    columns: 120
+    lines: 55
+  padding:
+    x: 2
+    y: 2
+  dynamic_padding: false
+  decorations: none
+  opacity: 0.9
+  startup_mode: Windowed
+
+font:
+  normal:
+    family: Hack Nerd Font Mono
+    style: Regular
+  size: 9.0
