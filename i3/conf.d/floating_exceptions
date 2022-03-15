@@ -29,6 +29,7 @@ for_window [class="Mate-control-center"] floating enable border normal
 for_window [class="Firewall-config"] floating enable border normal
 for_window [class="Setroubleshoot"] floating enable border normal
 for_window [title="Workspace Switcher Preferences"] floating enable border normal
+for_window [class="Blueberry.py"] floating enable border normal
 
 #   KDE exceptions
 for_window [title="Desktop — Plasma"] kill, floating enable, border none
