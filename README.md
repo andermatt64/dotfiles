@@ -45,7 +45,7 @@ The packages to-be installed below are meant for Fedora.
  * picom
  * xprop
  * jq
- * java-17-openjfk
+ * java-17-openjdk
  * starship
 
 #### Optional
