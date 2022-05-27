@@ -19,18 +19,20 @@ brew tap homebrew/cask-fonts
  * fish
  * jq
  * starship
+ * n
+ * ripgrep
  
 #### Casks
  * miniforge
  * blender
- * rectangle
+ * amethyst
  * font-jetbrains-mono-nerd-font
  * font-fira-code-nerd-font
  * font-ubuntu-mono-nerd-font
  * font-hack-nerd-font
 
 #### Post-Install Notes
- * Make sure `/opt/homebrew/bin/fish` to `/etc/shells`
+ * Make sure to add `/opt/homebrew/bin/fish` to `/etc/shells`
 
 ### Linux Requirements
 The packages to-be installed below are meant for Fedora.
@@ -40,13 +42,14 @@ The packages to-be installed below are meant for Fedora.
  * i3-gaps
  * fish
  * chromium
- * fire-code-fonts
+ * fira-code-fonts
  * nitrogen
  * picom
  * xprop
  * jq
  * java-17-openjdk
  * starship
+ * ripgrep
 
 #### Optional
  * moby-engine
