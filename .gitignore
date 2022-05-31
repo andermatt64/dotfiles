@@ -1,4 +1,4 @@
 .DS_Store
 generated/
 local/
-lunarvim/binaries/neovide-*
+support/binaries/neovide-*
