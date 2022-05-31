@@ -101,6 +101,13 @@ lvim.plugins = {
       )
     end,
   },
+  {
+    "RRethy/vim-illuminate",
+    event = "BufRead",
+    config = function()
+      require "illuminate".on_attach()
+    end,
+  },
 }
 
 -- GUI configuration

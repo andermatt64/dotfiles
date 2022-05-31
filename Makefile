@@ -30,6 +30,7 @@ LVIM_PHONY_GUI_BIN := generated/.lvim_gui_bin
 LVIM_GUI_BIN := lunarvim/lvim-gui
 LVIM_GUI_BIN_TARGET := $(LOCAL_BIN_DIR)/lvim-gui
 
+PICOM_CHECK := $(shell picom/checks.sh)
 PICOM_PHONY_CONFIG := generated/.picom_config
 PICOM_CONFIG := picom/picom.conf
 PICOM_TARGET := $(HOME)/.config/picom.conf
@@ -106,7 +107,7 @@ ifeq (1,${LVIM_GUI_CHECK})
 endif
 
 $(PICOM_PHONY_CONFIG): generated
-ifeq (Linux, $(PLATFORM))
+ifeq (1,$(PICOM_CHECK))
 	@touch $(PICOM_PHONY_CONFIG)
 	$(info Picom configuration file at $(FISH_CONFIG))
 endif
@@ -145,8 +146,7 @@ ifeq (1,${LVIM_GUI_CHECK})
 endif
 
 $(PICOM_TARGET): $(PICOM_PHONY_CONFIG)
-ifeq (Linux, $(PLATFORM))
-	@./picom/checks.sh
+ifeq (1,$(PICOM_CHECK))
 	@ln -s $(shell pwd)/$(PICOM_CONFIG) $(PICOM_TARGET)
 	$(info Linking $(PICOM_CONFIG) to $(PICOM_TARGET))
 endif

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-REDSHIFT_PATH=$(command -v redshift 2> /dev/null)
+REDSHIFT_PATH=$(command -v redshift)
 
 if [ "$1" = "" ] || [ "$2" = "" ] || [ "$3" = "" ]; then
     echo "Required three arguments missing."
