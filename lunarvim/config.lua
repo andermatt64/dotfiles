@@ -103,7 +103,7 @@ lvim.plugins = {
   },
   {
     "RRethy/vim-illuminate",
-    event = "BufRead",
+    event = "BufWinEnter",
     config = function()
       require "illuminate".on_attach()
     end,
