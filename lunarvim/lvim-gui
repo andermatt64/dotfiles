@@ -7,9 +7,9 @@ export LUNARVIM_CONFIG_DIR="${LUNARVIM_CONFIG_DIR:-"$HOME/.config/lvim"}"
 export LUNARVIM_CACHE_DIR="${LUNARVIM_CACHE_DIR:-"$HOME/.cache/lvim"}"
 
 if [ "${PLATFORM}" = "Linux" ]; then
-    exec neovide -- -u "$LUNARVIM_RUNTIME_DIR/lvim/init.lua" "$@"
+  exec neovide -- -u "$LUNARVIM_RUNTIME_DIR/lvim/init.lua" "$@"
 elif [ "${PLATFORM}" = "Darwin" ]; then
-    open -n "${HOME}/Applications/Neovide.app" --args -- -u "$LUNARVIM_RUNTIME_DIR/lvim/init.lua" "$@"
+  open -n "${HOME}/Applications/Neovide.app" --args -- -u "$LUNARVIM_RUNTIME_DIR/lvim/init.lua" "$(readlink -f -- "$@")"
 else
-    printf "Unsupported platform: ${PLATFORM}\n"
+  printf "Unsupported platform: ${PLATFORM}\n"
 fi
