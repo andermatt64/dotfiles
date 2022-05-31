@@ -76,7 +76,9 @@ The packages to-be installed below are meant for Fedora.
 
 ### Additional Prerequisites
  * Install [LunarVim](https://www.lunarvim.org/01-installing.html#prerequisites)
- * Install nodejs LTS: `n lts`
+ * Install nodejs LTS using `n`: `n lts`
+
+### Remote LunarVim Deployment (TODO)
 
 ### Appendix A: Docker setup
 <pre>
