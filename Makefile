@@ -1,6 +1,8 @@
 PYTHON := $(shell command -v python3 2> /dev/null)
 PLATFORM := $(shell uname)
 
+LOCAL_BIN_DIR := $(HOME)/.local/bin
+
 ALACRITTY_COMMON := alacritty/conf.d/common.yml alacritty/themes/powershell.yml
 ALACRITTY_CONFIG := generated/alacritty.yml
 ALACRITTY_TARGET := $(HOME)/.config/alacritty.yml
@@ -17,6 +19,17 @@ I3_CONFIG := generated/i3.config
 I3_DIR := $(HOME)/.config/i3
 I3_TARGET := $(I3_DIR)/config
 
+LVIM_CHECK := $(shell lunarvim/lvim_check.sh)
+LVIM_GUI_CHECK := $(shell lunarvim/neovide_check.sh)
+
+LVIM_PHONY_CONFIG := generated/.lvim_config
+LVIM_CONFIG := lunarvim/config.lua
+LVIM_CONFIG_TARGET := $(HOME)/.config/lvim/config.lua
+
+LVIM_PHONY_GUI_BIN := generated/.lvim_gui_bin
+LVIM_GUI_BIN := lunarvim/lvim-gui
+LVIM_GUI_BIN_TARGET := $(LOCAL_BIN_DIR)/lvim-gui
+
 PICOM_PHONY_CONFIG := generated/.picom_config
 PICOM_CONFIG := picom/picom.conf
 PICOM_TARGET := $(HOME)/.config/picom.conf
@@ -28,10 +41,10 @@ REDSHIFT_TARGET := $(REDSHIFT_DIR)/redshift.conf
 
 POSTPROCESS_SCRIPT := scripts/postprocess.sh
 
-all: $(ALACRITTY_CONFIG) $(FISH_PHONY_CONFIG) $(I3_CONFIG) $(PICOM_PHONY_CONFIG) $(REDSHIFT_PHONY_CONFIG)
+all: $(ALACRITTY_CONFIG) $(FISH_PHONY_CONFIG) $(I3_CONFIG) $(LVIM_PHONY_CONFIG) $(LVIM_PHONY_GUI_BIN) $(PICOM_PHONY_CONFIG) $(REDSHIFT_PHONY_CONFIG)
 
 clean:
-	-@rm $(ALACRITTY_TARGET) $(FISH_TARGET)
+	-@rm $(ALACRITTY_TARGET) $(FISH_TARGET) $(LVIM_CONFIG_TARGET) $(LVIM_GUI_BIN_TARGET)
 	$(info Removed common linked targets)
 
 ifeq (Linux, $(PLATFORM))
@@ -78,6 +91,20 @@ ifeq (Linux, $(PLATFORM))
 	$(info Generated i3 configuration file at $(I3_CONFIG))
 endif
 
+$(LVIM_PHONY_CONFIG): generated
+ifneq (1,${LVIM_CHECK})
+	$(error LunarVim environment check failed: LunarVim not installed)
+endif
+	$(info LunarVim environment check successful.)
+	@touch $(LVIM_PHONY_CONFIG)
+	$(info LunarVim configuration file at $(LVIM_CONFIG))
+
+$(LVIM_PHONY_GUI_BIN): generated
+ifeq (1,${LVIM_GUI_CHECK})
+	@touch $(LVIM_PHONY_GUI_BIN)
+	$(info LunarVim neovide script at $(LVIM_GUI_BIN))
+endif
+
 $(PICOM_PHONY_CONFIG): generated
 ifeq (Linux, $(PLATFORM))
 	@touch $(PICOM_PHONY_CONFIG)
@@ -106,6 +133,17 @@ ifeq (Linux, $(PLATFORM))
 	$(info Linking $(I3_CONFIG) to $(I3_TARGET))
 endif
 
+$(LVIM_CONFIG_TARGET): $(LVIM_PHONY_CONFIG)
+	@ln -s $(shell pwd)/$(LVIM_CONFIG) $(LVIM_CONFIG_TARGET)
+	$(info Linking $(LVIM_CONFIG_TARGET) to $(LVIM_CONFIG))
+
+$(LVIM_GUI_BIN_TARGET): $(LVIM_PHONY_GUI_BIN)
+ifeq (1,${LVIM_GUI_CHECK})
+	@mkdir -p $(LOCAL_BIN_DIR)
+	@ln -s $(shell pwd)/$(LVIM_GUI_BIN) $(LVIM_GUI_BIN_TARGET)
+	$(info Linking $(LVIM_GUI_BIN_TARGET) to $(LVIM_GUI_BIN))
+endif
+
 $(PICOM_TARGET): $(PICOM_PHONY_CONFIG)
 ifeq (Linux, $(PLATFORM))
 	@./picom/checks.sh
@@ -118,4 +156,4 @@ ifeq (Linux, $(PLATFORM))
 	@./redshift/install.sh "$(shell pwd)/$(REDSHIFT_CONFIG)" "$(REDSHIFT_TARGET)" "$(REDSHIFT_DIR)"
 endif
 
-install: $(ALACRITTY_TARGET) $(FISH_TARGET) $(I3_TARGET) $(PICOM_TARGET) $(REDSHIFT_TARGET)
+install: $(ALACRITTY_TARGET) $(FISH_TARGET) $(I3_TARGET) $(LVIM_CONFIG_TARGET) $(LVIM_GUI_BIN_TARGET) $(PICOM_TARGET) $(REDSHIFT_TARGET)
