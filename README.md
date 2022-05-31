@@ -60,6 +60,7 @@ The packages to-be installed below are meant for Fedora.
  * ripgrep
  * neovim
  * python3-neovim
+ * clang
 
 #### Optional
  * moby-engine
