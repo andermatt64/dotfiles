@@ -23,7 +23,9 @@ brew tap homebrew/cask-fonts
  * n
  * ripgrep
  * neovim
- 
+ * exa
+ * bat
+
 #### Casks
  * miniforge
  * blender
@@ -61,6 +63,8 @@ The packages to-be installed below are meant for Fedora.
  * neovim
  * python3-neovim
  * clang
+ * exa
+ * bat
 
 #### Optional
  * moby-engine
