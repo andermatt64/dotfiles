@@ -70,6 +70,7 @@ The packages to-be installed below are meant for Fedora.
  * moby-engine
  * moby-engine-fish-completion
  * docker-compose
+ * tmux
 
 #### Post-Install Notes
  * Make sure requisite [Nerd Fonts](https://www.nerdfonts.com/font-downloads) are installed

@@ -40,12 +40,17 @@ REDSHIFT_CONFIG := redshift/redshift.conf
 REDSHIFT_DIR := $(HOME)/.config/redshift
 REDSHIFT_TARGET := $(REDSHIFT_DIR)/redshift.conf
 
+TMUX_CHECK := $(shell tmux/checks.sh)
+TMUX_PHONY_CONFIG := generated/.tmux_config
+TMUX_CONFIG := tmux/tmux.conf
+TMUX_TARGET := $(HOME)/.tmux.conf
+
 POSTPROCESS_SCRIPT := scripts/postprocess.sh
 
 all: $(ALACRITTY_CONFIG) $(FISH_PHONY_CONFIG) $(I3_CONFIG) $(LVIM_PHONY_CONFIG) $(LVIM_PHONY_GUI_BIN) $(PICOM_PHONY_CONFIG) $(REDSHIFT_PHONY_CONFIG)
 
 clean:
-	-@rm $(ALACRITTY_TARGET) $(FISH_TARGET) $(LVIM_CONFIG_TARGET) $(LVIM_GUI_BIN_TARGET)
+	-@rm $(ALACRITTY_TARGET) $(FISH_TARGET) $(LVIM_CONFIG_TARGET) $(LVIM_GUI_BIN_TARGET) $(TMUX_TARGET)
 	$(info Removed common linked targets)
 
 ifeq (Linux, $(PLATFORM))
@@ -118,6 +123,10 @@ ifeq (Linux, $(PLATFORM))
 	$(info Redshift configuration file at $(REDSHIFT_CONFIG))
 endif
 
+$(TMUX_PHONY_CONFIG): generated
+	@touch $(TMUX_PHONY_CONFIG)
+	$(info tmux configuration file at $(TMUX_CONFIG))
+
 $(ALACRITTY_TARGET): $(ALACRITTY_CONFIG) $(FISH_TARGET)
 	@ln -s $(shell pwd)/$(ALACRITTY_CONFIG) $(ALACRITTY_TARGET)
 	$(info Linking $(ALACRITTY_TARGET) to $(ALACRITTY_CONFIG))
@@ -156,4 +165,10 @@ ifeq (Linux, $(PLATFORM))
 	@./redshift/install.sh "$(shell pwd)/$(REDSHIFT_CONFIG)" "$(REDSHIFT_TARGET)" "$(REDSHIFT_DIR)"
 endif
 
-install: $(ALACRITTY_TARGET) $(FISH_TARGET) $(I3_TARGET) $(LVIM_CONFIG_TARGET) $(LVIM_GUI_BIN_TARGET) $(PICOM_TARGET) $(REDSHIFT_TARGET)
+$(TMUX_TARGET): $(TMUX_PHONY_CONFIG)
+ifeq (1,${TMUX_CHECK})
+	@ln -s $(shell pwd)/$(TMUX_CONFIG) $(TMUX_TARGET)
+	$(info Linking $(TMUX_CONFIG) to $(TMUX_TARGET))
+endif
+
+install: $(ALACRITTY_TARGET) $(FISH_TARGET) $(I3_TARGET) $(LVIM_CONFIG_TARGET) $(LVIM_GUI_BIN_TARGET) $(PICOM_TARGET) $(REDSHIFT_TARGET) $(TMUX_TARGET)
