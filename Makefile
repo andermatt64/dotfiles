@@ -171,4 +171,16 @@ ifeq (1,${TMUX_CHECK})
 	$(info Linking $(TMUX_CONFIG) to $(TMUX_TARGET))
 endif
 
-install: $(ALACRITTY_TARGET) $(FISH_TARGET) $(I3_TARGET) $(LVIM_CONFIG_TARGET) $(LVIM_GUI_BIN_TARGET) $(PICOM_TARGET) $(REDSHIFT_TARGET) $(TMUX_TARGET)
+all: alacritty fish i3 lvim lvim_gui picom redshift tmux
+core: alacritty fish i3 lvim lvim_gui tmux
+shell: fish tmux
+
+alacritty: $(ALACRITTY_TARGET)
+fish: $(FISH_TARGET)
+i3: $(I3_TARGET)
+lvim: $(LVIM_CONFIG_TARGET)
+lvim_gui: $(LVIM_GUI_BIN_TARGET)
+picom: $(PICOM_TARGET)
+redshift: $(REDSHIFT_TARGET)
+tmux: $(TMUX_TARGET)
+
