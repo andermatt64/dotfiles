@@ -65,6 +65,7 @@ The packages to-be installed below are meant for Fedora.
  * clang
  * exa
  * bat
+ * sox
 
 #### Optional
  * moby-engine
