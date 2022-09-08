@@ -25,6 +25,8 @@ brew tap homebrew/cask-fonts
  * neovim
  * exa
  * bat
+ * sox
+ * tmux
 
 #### Casks
  * miniforge
@@ -66,12 +68,12 @@ The packages to-be installed below are meant for Fedora.
  * exa
  * bat
  * sox
+ * tmux
 
 #### Optional
  * moby-engine
  * moby-engine-fish-completion
  * docker-compose
- * tmux
 
 #### Post-Install Notes
  * Make sure requisite [Nerd Fonts](https://www.nerdfonts.com/font-downloads) are installed
