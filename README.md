@@ -1,10 +1,6 @@
 # dotfiles (June 2022)
 Modern dotfiles configuration that sets up the following:
 
- * Linux
-   * i3 window manager with MATE desktop environment
-   * redshift (requires separate daemonization)
-   * picom compositing manager
  * Common
    * alacritty terminal
    * fish shell
