@@ -1,4 +1,0 @@
-
-# Application Keybindings
-bindsym $mod+Return exec alacritty
-bindsym $mod+Shift+i exec --no-startup-id nitrogen --restore

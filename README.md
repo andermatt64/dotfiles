@@ -51,12 +51,8 @@ The packages to-be installed below are meant for Fedora.
 #### Packages
  * git
  * make
- * i3-gaps
  * fish
- * chromium
  * fira-code-fonts
- * nitrogen
- * picom
  * xprop
  * jq
  * java-17-openjdk
