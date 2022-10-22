@@ -65,6 +65,7 @@ The packages to-be installed below are meant for Fedora.
  * bat
  * sox
  * tmux
+ * bismuth
 
 #### Optional
  * moby-engine
@@ -79,8 +80,8 @@ The packages to-be installed below are meant for Fedora.
  * If building from source is not an option, we provide compiled `neovide` binaries installable via `install_neovide.sh` script in `support/`
 
 ### Additional Prerequisites
- * Install [LunarVim](https://www.lunarvim.org/01-installing.html#prerequisites)
- * Install nodejs LTS using `n`: `n lts`
+ * Install [LunarVim](https://www.lunarvim.org/docs/installation)
+ * Install nodejs LTS using [`n`](https://github.com/tj/n): `n lts`
 
 ### Remote LunarVim Deployment (TODO)
 
