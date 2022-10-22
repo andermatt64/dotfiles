@@ -89,7 +89,7 @@ The packages to-be installed below are meant for Fedora.
 <pre>
 systemctl enable docker
 groupadd docker
-usermod -aG docker username
+usermod -aG docker $USER
 </pre>
 
 ### Appendix B: Building neovide on Linux aarch64 (specifically Fedora)
