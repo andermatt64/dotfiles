@@ -1,4 +1,4 @@
-# dotfiles (June 2022)
+# dotfiles (October 2022)
 Modern dotfiles configuration that sets up the following:
 
  * Common
