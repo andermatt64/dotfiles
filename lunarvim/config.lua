@@ -12,8 +12,6 @@ lvim.leader = "space"
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 
-lvim.builtin.notify.active = true
-
 lvim.builtin.terminal.active = true
 
 lvim.builtin.treesitter.ensure_installed = {
@@ -46,7 +44,7 @@ lvim.builtin.treesitter.ensure_installed = {
 lvim.builtin.treesitter.highlight.enable = true
 
 -- LSP Settings
-lvim.lsp.automatic_servers_installation = true
+lvim.lsp.installer.automatic_servers_installation = true
 
 -- Formatters setup
 local formatters = require "lvim.lsp.null-ls.formatters"
@@ -114,7 +112,7 @@ lvim.plugins = {
 vim.cmd("let g:neovide_cursor_vfx_mode = \"railgun\"")
 
 if os_platform == "Linux" then
-  vim.cmd("set guifont=FiraCode\\ NF:h8.5")
+  vim.cmd("set guifont=FiraCode\\ NF:h7.5")
 elseif os_platform == "Darwin" then
   vim.cmd("set guifont=FiraCode\\ Nerd\\ Font\\ Mono:h12")
 end
