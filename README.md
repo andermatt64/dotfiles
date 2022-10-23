@@ -49,6 +49,7 @@ The packages to-be installed below are meant for Fedora.
  * make
  * fish
  * fira-code-fonts
+ * xclip
  * xprop
  * jq
  * java-17-openjdk
@@ -72,14 +73,16 @@ The packages to-be installed below are meant for Fedora.
  * Make sure requisite [Nerd Fonts](https://www.nerdfonts.com/font-downloads) are installed
  * If `moby-engine` is installed,
    * Make sure main user can run Docker commands: see [Appendix A](https://github.com/andermatt64/dotfiles/edit/main/README.md#appendix-a)
-   * Changin SELinux status requires deleting existing containers and rerunning them.
+   * Changing SELinux status requires deleting existing containers and rerunning them.
  * If building from source is not an option, we provide compiled `neovide` binaries installable via `install_neovide.sh` script in `support/`
+ * To setup KDE with Bismuth, take a look at [KDE Bismuth setup for an i3-like experience](kde/README.md)
 
 ### Additional Prerequisites
  * Install [LunarVim](https://www.lunarvim.org/docs/installation)
  * Install nodejs LTS using [`n`](https://github.com/tj/n): `n lts`
 
 ### Remote LunarVim Deployment (TODO)
+To be continued...
 
 ### Appendix A: Docker setup
 <pre>
