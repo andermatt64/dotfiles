@@ -44,7 +44,7 @@ lvim.builtin.treesitter.ensure_installed = {
 lvim.builtin.treesitter.highlight.enable = true
 
 -- LSP Settings
-lvim.lsp.installer.automatic_servers_installation = true
+lvim.lsp.installer.setup.automatic_installation = true
 
 -- Formatters setup
 local formatters = require "lvim.lsp.null-ls.formatters"
