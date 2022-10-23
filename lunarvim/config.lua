@@ -12,8 +12,6 @@ lvim.leader = "space"
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 
-lvim.builtin.notify.active = true
-
 lvim.builtin.terminal.active = true
 
 lvim.builtin.treesitter.ensure_installed = {
@@ -46,7 +44,7 @@ lvim.builtin.treesitter.ensure_installed = {
 lvim.builtin.treesitter.highlight.enable = true
 
 -- LSP Settings
-lvim.lsp.automatic_servers_installation = true
+lvim.lsp.installer.setup.automatic_installation = true
 
 -- Formatters setup
 local formatters = require "lvim.lsp.null-ls.formatters"
