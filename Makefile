@@ -113,7 +113,7 @@ ifeq (1,${TMUX_CHECK})
 endif
 
 all: alacritty fish lvim lvim_gui tmux
-core: alacritty fish lvim lvim_gui tmux
+core: alacritty fish tmux
 shell: fish tmux
 
 alacritty: $(ALACRITTY_TARGET)
