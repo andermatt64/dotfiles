@@ -1,10 +1,6 @@
-# dotfiles (June 2022)
+# dotfiles (October 2022)
 Modern dotfiles configuration that sets up the following:
 
- * Linux
-   * i3 window manager with MATE desktop environment
-   * redshift (requires separate daemonization)
-   * picom compositing manager
  * Common
    * alacritty terminal
    * fish shell
@@ -51,12 +47,9 @@ The packages to-be installed below are meant for Fedora.
 #### Packages
  * git
  * make
- * i3-gaps
  * fish
- * chromium
  * fira-code-fonts
- * nitrogen
- * picom
+ * xclip
  * xprop
  * jq
  * java-17-openjdk
@@ -69,6 +62,7 @@ The packages to-be installed below are meant for Fedora.
  * bat
  * sox
  * tmux
+ * bismuth
 
 #### Optional
  * moby-engine
@@ -79,20 +73,22 @@ The packages to-be installed below are meant for Fedora.
  * Make sure requisite [Nerd Fonts](https://www.nerdfonts.com/font-downloads) are installed
  * If `moby-engine` is installed,
    * Make sure main user can run Docker commands: see [Appendix A](https://github.com/andermatt64/dotfiles/edit/main/README.md#appendix-a)
-   * Changin SELinux status requires deleting existing containers and rerunning them.
+   * Changing SELinux status requires deleting existing containers and rerunning them.
  * If building from source is not an option, we provide compiled `neovide` binaries installable via `install_neovide.sh` script in `support/`
+ * To setup KDE with Bismuth, take a look at [KDE Bismuth setup for an i3-like experience](kde/README.md)
 
 ### Additional Prerequisites
- * Install [LunarVim](https://www.lunarvim.org/01-installing.html#prerequisites)
- * Install nodejs LTS using `n`: `n lts`
+ * Install [LunarVim](https://www.lunarvim.org/docs/installation)
+ * Install nodejs LTS using [`n`](https://github.com/tj/n): `n lts`
 
 ### Remote LunarVim Deployment (TODO)
+To be continued...
 
 ### Appendix A: Docker setup
 <pre>
 systemctl enable docker
 groupadd docker
-usermod -aG docker username
+usermod -aG docker $USER
 </pre>
 
 ### Appendix B: Building neovide on Linux aarch64 (specifically Fedora)

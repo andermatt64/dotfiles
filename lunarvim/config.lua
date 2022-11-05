@@ -112,7 +112,7 @@ lvim.plugins = {
 vim.cmd("let g:neovide_cursor_vfx_mode = \"railgun\"")
 
 if os_platform == "Linux" then
-  vim.cmd("set guifont=FiraCode\\ NF:h8.5")
+  vim.cmd("set guifont=FiraCode\\ NF:h7.5")
 elseif os_platform == "Darwin" then
   vim.cmd("set guifont=FiraCode\\ Nerd\\ Font\\ Mono:h12")
 end
