@@ -36,6 +36,11 @@ brew tap homebrew/cask-fonts
 #### Post-Install Notes
  * Make sure to add `/opt/homebrew/bin/fish` to `/etc/shells`
  * To counter application signing issues, manually build `neovide` and `alacritty` from source.
+ * For `alacritty` to have nice font-smoothing, run the following commands:
+<pre>
+defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
+defaults -currentHost write -globalDomain AppleFontSmoothing -int 2
+</pre>
 
 ### Linux Requirements
 The packages to-be installed below are meant for Fedora.
