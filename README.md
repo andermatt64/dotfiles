@@ -12,7 +12,7 @@ All packages require first installing [Homebrew](https://brew.sh) and installing
 brew tap homebrew/cask-fonts
 </pre>
 
-#### Normal Packages
+#### Packages
  * fish
  * jq
  * starship
@@ -49,16 +49,12 @@ The packages to-be installed below are meant for Fedora.
  * Fira Code Nerd Font
  * JetBrains Mono Nerd Font
 
-#### Packages
+#### Core Packages
  * git
  * make
  * fish
- * fira-code-fonts
- * xclip
- * xprop
  * jq
- * java-17-openjdk
- * starship
+ * starship (requires [COPR](https://copr.fedorainfracloud.org/coprs/atim/starship/))
  * ripgrep
  * neovim
  * python3-neovim
@@ -67,8 +63,14 @@ The packages to-be installed below are meant for Fedora.
  * bat
  * sox
  * tmux
- * bismuth
 
+#### UI Packages
+ * fira-code-fonts
+ * xclip
+ * xprop
+ * java-17-openjdk
+ * bismuth
+ 
 #### Optional
  * moby-engine
  * moby-engine-fish-completion
