@@ -12,16 +12,20 @@ Selected layouts are left as an exercise for the configurator but sensible defau
 
 #### Window Rules
 Window rules are also left as an exercise for the configurator. Sensible suggestions are to ensure the following window classes are added to **Float Windows**:
-* systemsettings
-* plasma-discover
-* dolphin
+<pre>
+systemsettings,plasma-discover,dolphin
+</pre>
+
+#### Appearance
+Tiling appearance is an exercise left to the reader but for uniformity, the following settings are used:
+![KDE Appearance Dialog](kde_appearance.png)
 
 ### Setting up keyboard shortcuts
+Previously, **Custom Shortcuts** was used to define a global shortcut for opening a terminal. However, this settings option does not exist on KDE Wayland. To mitigate, we set up an Alacritty New Terminal shortcut that works just as well.
 
-#### KWin and tiling
-![Shortcuts Import Scheme](import_shortcuts_scheme.png)
-Select `kde-i3-like.kksrc` to import.
+First, add Alacritty as an application shortcut.
+![Add Application Shortcut](kde_alacritty_term.png)
 
-#### Global open terminal (X11 only as of 5.26)
-Assuming the preferred terminal is `alacritty`, select `kde-i3-like.khotkeys` to import.
-![Custom Shortcuts Import](import_khotkeys.png)
+Set preferred shortcut, `Alt-Enter`, to spawn a new terminal.
+![Set Keyboard Shortcut](kde_alacritty_shortcut.png)
+
