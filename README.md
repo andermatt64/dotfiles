@@ -33,6 +33,12 @@ brew tap homebrew/cask-fonts
  * font-ubuntu-mono-nerd-font
  * font-hack-nerd-font
 
+#### Optional
+ * alacritty (recommend building from source)
+ * neovide (recommend building from source)
+ * rustup-init
+ * golang
+ 
 #### Post-Install Notes
  * Make sure to add `/opt/homebrew/bin/fish` to `/etc/shells`
  * To counter application signing issues, manually build `neovide` and `alacritty` from source.
@@ -70,6 +76,8 @@ The packages to-be installed below are meant for Fedora.
  * xprop
  * java-17-openjdk
  * bismuth
+ * alacritty (sometimes requires [COPR](https://copr.fedorainfracloud.org/coprs/atim/alacritty/) for latest versions)
+ * neovide (may not work on Linux aarch64)
  
 #### Optional
  * moby-engine
@@ -85,8 +93,8 @@ The packages to-be installed below are meant for Fedora.
  * To setup KDE with Bismuth, take a look at [KDE Bismuth setup for an i3-like experience](kde/README.md)
 
 ### Additional Prerequisites
- * Install [LunarVim](https://www.lunarvim.org/docs/installation)
  * Install nodejs LTS using [`n`](https://github.com/tj/n): `n lts`
+ * Install [LunarVim](https://www.lunarvim.org/docs/installation) (unsupported on Linux aarch64)
 
 ### Remote LunarVim Deployment (TODO)
 To be continued...
