@@ -22,6 +22,6 @@ Window rules are also left as an exercise for the configurator. Sensible suggest
 ![Shortcuts Import Scheme](import_shortcuts_scheme.png)
 Select `kde-i3-like.kksrc` to import.
 
-#### Global open terminal
+#### Global open terminal (X11 only as of 5.26)
 Assuming the preferred terminal is `alacritty`, select `kde-i3-like.khotkeys` to import.
 ![Custom Shortcuts Import](import_khotkeys.png)
