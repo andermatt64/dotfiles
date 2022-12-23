@@ -79,7 +79,7 @@ The packages to-be installed below are meant for Fedora.
 #### Post-Install Notes
  * Make sure requisite [Nerd Fonts](https://www.nerdfonts.com/font-downloads) are installed
  * If `moby-engine` is installed,
-   * Make sure main user can run Docker commands: see [Appendix A](https://github.com/andermatt64/dotfiles/edit/main/README.md#appendix-a)
+   * Make sure main user can run Docker commands: see [Appendix A](https://github.com/andermatt64/dotfiles/blob/main/README.md#appendix-a)
    * Changing SELinux status requires deleting existing containers and rerunning them.
  * If building from source is not an option, we provide compiled `neovide` binaries installable via `install_neovide.sh` script in `support/`
  * To setup KDE with Bismuth, take a look at [KDE Bismuth setup for an i3-like experience](kde/README.md)
