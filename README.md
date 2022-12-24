@@ -87,7 +87,6 @@ The packages to-be installed below are meant for Fedora.
  * If `moby-engine` is installed,
    * Make sure main user can run Docker commands: see [Appendix A](https://github.com/andermatt64/dotfiles/blob/main/README.md#appendix-a)
    * Changing SELinux status requires deleting existing containers and rerunning them.
- * If building from source is not an option, we provide compiled `neovide` binaries installable via `install_neovide.sh` script in `support/`
  * To setup KDE with Bismuth, take a look at [KDE Bismuth setup for an i3-like experience](kde/README.md)
 
 ### Additional Prerequisites
@@ -98,9 +97,9 @@ The packages to-be installed below are meant for Fedora.
 To be continued...
 
 ### Appendix A: Docker setup
+The `docker` group is usually created after installing `moby-engine`. However, we need to run the following commands to add the proper users and enable automatic startup on reboot.
 <pre>
 systemctl enable docker
-groupadd docker
 usermod -aG docker $USER
 </pre>
 
