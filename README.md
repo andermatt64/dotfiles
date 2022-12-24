@@ -93,6 +93,15 @@ The packages to-be installed below are meant for Fedora.
  * Install nodejs LTS using [`n`](https://github.com/tj/n): `n lts`
  * Install [LunarVim](https://www.lunarvim.org/docs/installation) (unsupported dependencies on Linux aarch64)
 
+### Local Modifications
+Modifications specific to a specific machines may be required to make things work best. 
+
+To insert local modifications:
+ 1. Create a `local/` directory in the repository root directory. Git will ignore this directory.
+ 2. Create a `[appname].local.sh` shell script that takes in the parameter of the generated configuration file path. `[appname]` should refer to the application to be localized. For example, for Alacritty, this will be `alacritty`
+
+For examples of localized modifications, see [examples/](examples/)
+
 ### Remote LunarVim Deployment (TODO)
 To be continued...
 
