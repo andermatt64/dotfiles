@@ -19,6 +19,7 @@ systemsettings,plasma-discover,dolphin
 #### Appearance
 Tiling appearance is an exercise left to the reader but for uniformity, the following settings are used:
 ![KDE Appearance Dialog](kde_appearance.png)
+> **NOTE:** __No borders around tiled windows__ option may need to be unchecked for VMs running with a MacOS host. `Alt-Shift` modifier does not seem to work on MacOS Ventura for certain key combinations.
 
 ### Setting up keyboard shortcuts
 Previously, **Custom Shortcuts** was used to define a global shortcut for opening a terminal. However, this settings option does not exist on KDE Wayland. To mitigate, we set up an Alacritty New Terminal shortcut that works just as well.
@@ -26,6 +27,6 @@ Previously, **Custom Shortcuts** was used to define a global shortcut for openin
 First, add Alacritty as an application shortcut.
 ![Add Application Shortcut](kde_alacritty_term.png)
 
-Set preferred shortcut, `Alt-Enter`, to spawn a new terminal.
+Then, set preferred shortcut, `Alt-Enter`, to spawn a new terminal.
 ![Set Keyboard Shortcut](kde_alacritty_shortcut.png)
 
