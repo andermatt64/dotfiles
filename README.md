@@ -1,10 +1,5 @@
-# dotfiles (October 2022)
-Modern dotfiles configuration that sets up the following:
-
- * Common
-   * alacritty terminal
-   * fish shell
-   * neovim editor
+# dotfiles (December 2022)
+Modern dotfiles configuration that documents and sets up my optimal setup for MacOS and Linux.
 
 ### MacOS Requirements
 All packages require first installing [Homebrew](https://brew.sh) and installing the `homebrew/cask-fonts` tap using the following command:
@@ -47,6 +42,7 @@ brew tap homebrew/cask-fonts
 defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
 defaults -currentHost write -globalDomain AppleFontSmoothing -int 2
 </pre>
+ * [Setup Amethyst with an i3-like experience](amethyst/README.md)
 
 ### Linux Requirements
 The packages to-be installed below are meant for Fedora.
@@ -54,6 +50,8 @@ The packages to-be installed below are meant for Fedora.
 #### Fonts
  * Fira Code Nerd Font
  * JetBrains Mono Nerd Font
+ * Hack Nerd Font
+ * Ubuntu Mono Nerd Font
 
 #### Core Packages
  * git
@@ -94,7 +92,7 @@ The packages to-be installed below are meant for Fedora.
 
 ### Additional Prerequisites
  * Install nodejs LTS using [`n`](https://github.com/tj/n): `n lts`
- * Install [LunarVim](https://www.lunarvim.org/docs/installation) (unsupported on Linux aarch64)
+ * Install [LunarVim](https://www.lunarvim.org/docs/installation) (unsupported dependencies on Linux aarch64)
 
 ### Remote LunarVim Deployment (TODO)
 To be continued...
@@ -106,37 +104,3 @@ groupadd docker
 usermod -aG docker $USER
 </pre>
 
-### Appendix B: Building neovide on Linux aarch64 (specifically Fedora)
-Install the following additional Fedora packages:
- * python2.7
- * fontconfig-devel
- * libxcb-devel
- * ninja-build
-
-Follow the [from source build instructions](https://github.com/neovide/neovide/blob/main/README.md#from-source-1), namely steps 2 to 4. Step 4 is expected to fail with an error message about a file in `~/.cargo/registry/src/github.com-1ecc6299db9ec823/skia-bindings-0.42.1`.
-
-Currently, `neovide` does not build on aarch64 because `rust-skia` has broken platform assumptions. The Ninja build scripts only provide x86 and amd64 binaries -- erroring out on all other platforms. To fix, we have to manually add a new platform case and make it use the `ninja` build tool from `PATH` (see below for a snippet of what we added to fix)
-
-`~/.cargo/registry/src/github.com-1ecc6299db9ec823/skia-bindings-0.42.1/depot_tools/ninja`:
-<pre>
-   Linux)
-     MACHINE=$(uname -m)
-     case "$MACHINE" in
-       i?86|x86_64)
-         LONG_BIT=$(getconf LONG_BIT)
-         # We know we are on x86 but we need to use getconf to determine
-         # bittage of the userspace install (e.g. when running 32-bit userspace
-         # on x86_64 kernel)
-         exec "${THIS_DIR}/ninja-linux${LONG_BIT}" "$@";;
-+      aarch64)
-+        exec ninja "$@";;
-       *)
-         echo Unknown architecture \($MACHINE\) -- unable to run ninja.
-         print_help
-         exit 1;;
-     esac
-     ;;
-   Darwin)    exec "${THIS_DIR}/ninja-mac" "$@";;
-</pre>
-
-Attempt to try step 4 again, this time, `skia-bindings` will build successfully and produce a `neovide` binary.
