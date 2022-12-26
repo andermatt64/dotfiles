@@ -13,6 +13,13 @@ FISH_CHECK := $(shell fish/checks.sh)
 FISH_DIR := $(HOME)/.config/fish
 FISH_TARGET := $(FISH_DIR)/config.fish
 
+HELIX_CHECK := $(shell helix/checks.sh)
+HELIX_CONFIG_DIR := $(HOME)/.config/helix
+HELIX_CONFIG := helix/config.toml
+HELIX_LANG := helix/languages.toml
+HELIX_LANG_TARGET := $(HELIX_CONFIG_DIR)/languages.toml
+HELIX_CONFIG_TARGET := $(HELIX_CONFIG_DIR)/config.toml
+
 LVIM_CHECK := $(shell lunarvim/lvim_check.sh)
 LVIM_GUI_CHECK := $(shell lunarvim/neovide_check.sh)
 
@@ -31,10 +38,8 @@ TMUX_TARGET := $(HOME)/.tmux.conf
 
 POSTPROCESS_SCRIPT := scripts/postprocess.sh
 
-all: $(ALACRITTY_CONFIG) $(FISH_PHONY_CONFIG) $(LVIM_PHONY_CONFIG) $(LVIM_PHONY_GUI_BIN)
-
 clean:
-	-@rm $(ALACRITTY_TARGET) $(FISH_TARGET) $(LVIM_CONFIG_TARGET) $(LVIM_GUI_BIN_TARGET) $(TMUX_TARGET)
+	-@rm $(ALACRITTY_TARGET) $(FISH_TARGET) $(LVIM_CONFIG_TARGET) $(LVIM_GUI_BIN_TARGET) $(TMUX_TARGET) $(HELIX_LANG_TARGET) $(HELIX_CONFIG_TARGET)
 	$(info Removed common linked targets)
 
 	-@rm -rf generated/
@@ -112,12 +117,30 @@ ifeq (1,${TMUX_CHECK})
 	$(info Linking $(TMUX_CONFIG) to $(TMUX_TARGET))
 endif
 
-all: alacritty fish lvim lvim_gui tmux
-core: alacritty fish tmux
-shell: fish tmux
+$(HELIX_PHONY_CONFIG): generated
+ifneq (1,${HELIX_CHECK})
+	$(error Helix environment check failed: cannot find helix editor binary)
+endif
+	$(info Helix environment check successful.)
+	@touch $(HELIX_PHONY_CONFIG)
+	@mkdir -p $(HELIX_CONFIG_DIR)
+	$(info Helic configuration files located in $(HELIX_CONFIG_DIR))
+	
+$(HELIX_CONFIG_TARGET): $(HELIX_PHONY_CONFIG)
+	@ln -s $(shell pwd)/$(HELIX_CONFIG) $(HELIX_CONFIG_TARGET)
+	$(info Linking $(HELIX_CONFIG_TARGET) to $(HELIX_CONFIG))
+	
+$(HELIX_LANG_TARGET): $(HELIX_PHONY_CONFIG)
+	@ln -s $(shell pwd)/$(HELIX_LANG) $(HELIX_LANG_TARGET)
+	$(info Linking $(HELIX_LANG_TARGET) to $(HELIX_LANG))
+		
+all: core lvim lvim_gui
+core: shell alacritty
+shell: fish tmux helix
 
 alacritty: $(ALACRITTY_TARGET)
 fish: $(FISH_TARGET)
+helix: $(HELIX_CONFIG_TARGET) $(HELIX_LANG_TARGET)
 lvim: $(LVIM_CONFIG_TARGET)
 lvim_gui: $(LVIM_GUI_BIN_TARGET)
 tmux: $(TMUX_TARGET)
