@@ -77,11 +77,15 @@ The packages to-be installed below are meant for Fedora.
  * alacritty (sometimes requires [COPR](https://copr.fedorainfracloud.org/coprs/atim/alacritty/) for latest versions)
  * neovide (may not work on Linux aarch64)
  
-#### Optional
+#### Optional Packages
  * moby-engine
  * moby-engine-fish-completion
  * docker-compose
 
+#### Language Servers for Helix
+ * pyright: `npm install -g pyright`
+ * vscode-langservers-extracted: `npm install -g vscode-langservers-extracted`
+ 
 #### Post-Install Notes
  * Make sure requisite [Nerd Fonts](https://www.nerdfonts.com/font-downloads) are installed
  * If `moby-engine` is installed,
