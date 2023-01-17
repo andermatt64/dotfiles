@@ -20,17 +20,6 @@ HELIX_LANG := helix/languages.toml
 HELIX_LANG_TARGET := $(HELIX_CONFIG_DIR)/languages.toml
 HELIX_CONFIG_TARGET := $(HELIX_CONFIG_DIR)/config.toml
 
-LVIM_CHECK := $(shell lunarvim/lvim_check.sh)
-LVIM_GUI_CHECK := $(shell lunarvim/neovide_check.sh)
-
-LVIM_PHONY_CONFIG := generated/.lvim_config
-LVIM_CONFIG := lunarvim/config.lua
-LVIM_CONFIG_TARGET := $(HOME)/.config/lvim/config.lua
-
-LVIM_PHONY_GUI_BIN := generated/.lvim_gui_bin
-LVIM_GUI_BIN := lunarvim/lvim-gui
-LVIM_GUI_BIN_TARGET := $(LOCAL_BIN_DIR)/lvim-gui
-
 TMUX_CHECK := $(shell tmux/checks.sh)
 TMUX_PHONY_CONFIG := generated/.tmux_config
 TMUX_CONFIG := tmux/tmux.conf
@@ -39,7 +28,7 @@ TMUX_TARGET := $(HOME)/.tmux.conf
 POSTPROCESS_SCRIPT := scripts/postprocess.sh
 
 clean:
-	-@rm $(ALACRITTY_TARGET) $(FISH_TARGET) $(LVIM_CONFIG_TARGET) $(LVIM_GUI_BIN_TARGET) $(TMUX_TARGET) $(HELIX_LANG_TARGET) $(HELIX_CONFIG_TARGET)
+	-@rm $(ALACRITTY_TARGET) $(FISH_TARGET) $(TMUX_TARGET) $(HELIX_LANG_TARGET) $(HELIX_CONFIG_TARGET)
 	$(info Removed common linked targets)
 
 	-@rm -rf generated/
@@ -73,20 +62,6 @@ endif
 	@touch $(FISH_PHONY_CONFIG)
 	$(info Fish configuration file at $(FISH_CONFIG))
 
-$(LVIM_PHONY_CONFIG): generated
-ifneq (1,${LVIM_CHECK})
-	$(error LunarVim environment check failed: LunarVim not installed)
-endif
-	$(info LunarVim environment check successful.)
-	@touch $(LVIM_PHONY_CONFIG)
-	$(info LunarVim configuration file at $(LVIM_CONFIG))
-
-$(LVIM_PHONY_GUI_BIN): generated
-ifeq (1,${LVIM_GUI_CHECK})
-	@touch $(LVIM_PHONY_GUI_BIN)
-	$(info LunarVim neovide script at $(LVIM_GUI_BIN))
-endif
-
 $(TMUX_PHONY_CONFIG): generated
 	@touch $(TMUX_PHONY_CONFIG)
 	$(info tmux configuration file at $(TMUX_CONFIG))
@@ -99,17 +74,6 @@ $(FISH_TARGET): $(FISH_PHONY_CONFIG)
 	@mkdir -p $(FISH_DIR)
 	@ln -s $(shell pwd)/$(FISH_CONFIG) $(FISH_TARGET)
 	$(info Linking $(FISH_TARGET) to $(FISH_CONFIG))
-
-$(LVIM_CONFIG_TARGET): $(LVIM_PHONY_CONFIG)
-	@ln -s $(shell pwd)/$(LVIM_CONFIG) $(LVIM_CONFIG_TARGET)
-	$(info Linking $(LVIM_CONFIG_TARGET) to $(LVIM_CONFIG))
-
-$(LVIM_GUI_BIN_TARGET): $(LVIM_PHONY_GUI_BIN)
-ifeq (1,${LVIM_GUI_CHECK})
-	@mkdir -p $(LOCAL_BIN_DIR)
-	@ln -s $(shell pwd)/$(LVIM_GUI_BIN) $(LVIM_GUI_BIN_TARGET)
-	$(info Linking $(LVIM_GUI_BIN_TARGET) to $(LVIM_GUI_BIN))
-endif
 
 $(TMUX_TARGET): $(TMUX_PHONY_CONFIG)
 ifeq (1,${TMUX_CHECK})
@@ -134,14 +98,12 @@ $(HELIX_LANG_TARGET): $(HELIX_PHONY_CONFIG)
 	@ln -s $(shell pwd)/$(HELIX_LANG) $(HELIX_LANG_TARGET)
 	$(info Linking $(HELIX_LANG_TARGET) to $(HELIX_LANG))
 		
-all: core lvim lvim_gui
+all: core
 core: shell alacritty
 shell: fish tmux helix
 
 alacritty: $(ALACRITTY_TARGET)
 fish: $(FISH_TARGET)
 helix: $(HELIX_CONFIG_TARGET) $(HELIX_LANG_TARGET)
-lvim: $(LVIM_CONFIG_TARGET)
-lvim_gui: $(LVIM_GUI_BIN_TARGET)
 tmux: $(TMUX_TARGET)
 

@@ -1,4 +1,4 @@
-# dotfiles (December 2022)
+# dotfiles (February 2023)
 Modern dotfiles configuration that documents and sets up my optimal setup for MacOS and Linux.
 
 ### MacOS Requirements
@@ -13,7 +13,6 @@ brew tap homebrew/cask-fonts
  * starship
  * n
  * ripgrep
- * neovim
  * exa
  * bat
  * sox
@@ -30,7 +29,6 @@ brew tap homebrew/cask-fonts
 
 #### Optional
  * alacritty (recommend building from source)
- * neovide (recommend building from source)
  * rustup-init
  * golang
  
@@ -60,8 +58,6 @@ The packages to-be installed below are meant for Fedora.
  * jq
  * starship (requires [COPR](https://copr.fedorainfracloud.org/coprs/atim/starship/))
  * ripgrep
- * neovim
- * python3-neovim
  * clang
  * exa
  * bat
@@ -75,7 +71,6 @@ The packages to-be installed below are meant for Fedora.
  * java-17-openjdk
  * bismuth
  * alacritty (sometimes requires [COPR](https://copr.fedorainfracloud.org/coprs/atim/alacritty/) for latest versions)
- * neovide (may not work on Linux aarch64)
  
 #### Optional Packages
  * moby-engine
@@ -95,7 +90,6 @@ The packages to-be installed below are meant for Fedora.
 
 ### Additional Prerequisites
  * Install nodejs LTS using [`n`](https://github.com/tj/n): `n lts`
- * Install [LunarVim](https://www.lunarvim.org/docs/installation) (unsupported dependencies on Linux aarch64)
 
 ### Local Modifications
 Modifications specific to a specific machines may be required to make things work best. 
@@ -105,9 +99,6 @@ To insert local modifications:
  2. Create a `[appname].local.sh` shell script that takes in the parameter of the generated configuration file path. `[appname]` should refer to the application to be localized. For example, for Alacritty, this will be `alacritty`
 
 For examples of localized modifications, see [examples/](examples/)
-
-### Remote LunarVim Deployment (TODO)
-To be continued...
 
 ### Appendix A: Docker setup
 The `docker` group is usually created after installing `moby-engine`. However, we need to run the following commands to add the proper users and enable automatic startup on reboot.
