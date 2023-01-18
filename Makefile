@@ -22,6 +22,8 @@ TMUX_CONFIG := tmux/tmux.conf
 TMUX_TARGET := $(HOME)/.tmux.conf
 
 WEZTERM_CONFIG_DIR := $(HOME)/.config/wezterm
+WEZTERM_BIN_TARGET := $(LOCAL_BIN_DIR)/wezterm
+WEZTERM_BIN := wezterm/wezterm
 WEZTERM_LOCAL_SCRIPT := local/wezterm.local.lua
 WEZTERM_LOCAL_TARGET := $(WEZTERM_CONFIG_DIR)/local_cfg.lua
 WEZTERM_TARGET_SCRIPT := wezterm/config.lua
@@ -30,7 +32,7 @@ WEZTERM_TARGET := $(WEZTERM_CONFIG_DIR)/wezterm.lua
 POSTPROCESS_SCRIPT := scripts/postprocess.sh
 
 clean:
-	-@rm $(FISH_TARGET) $(TMUX_TARGET) $(HELIX_LANG_TARGET) $(HELIX_CONFIG_TARGET) $(WEZTERM_LOCAL_TARGET) $(WEZTERM_TARGET)
+	-@rm $(FISH_TARGET) $(TMUX_TARGET) $(HELIX_LANG_TARGET) $(HELIX_CONFIG_TARGET) $(WEZTERM_LOCAL_TARGET) $(WEZTERM_TARGET) $(WEZTERM_BIN_TARGET)
 	$(info Removed common linked targets)
 
 	-@rm -rf generated/
@@ -83,6 +85,15 @@ $(HELIX_LANG_TARGET): $(HELIX_PHONY_CONFIG)
 	@ln -s $(shell pwd)/$(HELIX_LANG) $(HELIX_LANG_TARGET)
 	$(info Linking $(HELIX_LANG_TARGET) to $(HELIX_LANG))
 
+$(WEZTERM_BIN_TARGET):
+ifeq (, $(shell which wezterm >/dev/null))
+	@mkdir -p $(LOCAL_BIN_DIR)
+	@ln -s $(shell pwd)/$(WEZTERM_BIN) $(WEZTERM_BIN_TARGET)
+	$(info Linking $(WEZTERM_BIN_TARGET) to $(WEZTERM_BIN))
+else
+	$(info Wezterm binary already exists.)
+endif
+
 $(WEZTERM_CONFIG_DIR):
 	@mkdir -p $(WEZTERM_CONFIG_DIR)
 	$(info Creating $(WEZTERM_CONFIG_DIR))
@@ -107,5 +118,5 @@ shell: fish tmux helix
 fish: $(FISH_TARGET)
 helix: $(HELIX_CONFIG_TARGET) $(HELIX_LANG_TARGET)
 tmux: $(TMUX_TARGET)
-wezterm: $(WEZTERM_TARGET) $(WEZTERM_LOCAL_TARGET)
+wezterm: $(WEZTERM_TARGET) $(WEZTERM_LOCAL_TARGET) $(WEZTERM_BIN_TARGET)
 
