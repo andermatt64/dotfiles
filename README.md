@@ -64,7 +64,7 @@ The packages to-be installed below are meant for Fedora.
  * xclip
  * xprop
  * bismuth
- * wezterm (recommend using [FlatPak package](https://wezfurlong.org/wezterm/install/linux.html)
+ * wezterm (recommend using [FlatPak package](https://wezfurlong.org/wezterm/install/linux.html))
  
 #### Optional Packages
  * moby-engine
@@ -73,9 +73,9 @@ The packages to-be installed below are meant for Fedora.
  * fira-code-fonts
  * java-17-openjdk
 
-#### Language Servers for Helix
- * pyright: `npm install -g pyright`
- * vscode-langservers-extracted: `npm install -g vscode-langservers-extracted`
+#### Language Servers Localizations for Helix
+The default LSP configurations don't always match in-line with what I want. For those cases, we have `languages.toml` to use custom LSPs.
+ * **Python**: pyright => `npm install -g pyright`
  
 #### Post-Install Notes
  * Make sure requisite [Nerd Fonts](https://www.nerdfonts.com/font-downloads) are installed
