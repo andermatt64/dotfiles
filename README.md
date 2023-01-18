@@ -75,7 +75,7 @@ The packages to-be installed below are meant for Fedora.
 
 #### Language Servers Localizations for Helix
 The default LSP configurations don't always match in-line with what I want. For those cases, we have `languages.toml` to use custom LSPs.
- * **Python**: pyright => `npm install -g pyright`
+ * **\[Python\]** pyright: `npm install -g pyright`
  
 #### Post-Install Notes
  * Make sure requisite [Nerd Fonts](https://www.nerdfonts.com/font-downloads) are installed
@@ -96,7 +96,7 @@ To insert local modifications (other than `wezterm`):
 
 For localized `wezterm` configurations:
  1. Create a `local/` directory in the repository root directory (if not existing already). Git will ignore this directory.
- 2. Create a `wezterm.local.lua` script that returns a table with overriden platform specific keys such as `font_size` and `line_height`
+ 2. Create a `wezterm.local.lua` script that returns a table with overridden platform specific keys such as `font_size` and `line_height`
 
 For examples of localized modifications, see [examples/](examples/)
 
