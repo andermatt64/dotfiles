@@ -17,25 +17,23 @@ brew tap homebrew/cask-fonts
  * bat
  * sox
  * tmux
+ * helix
 
 #### Casks
- * miniforge
- * blender
+ * wezterm
  * amethyst
  * font-jetbrains-mono-nerd-font
- * font-fira-code-nerd-font
- * font-ubuntu-mono-nerd-font
- * font-hack-nerd-font
 
 #### Optional
- * alacritty (recommend building from source)
+ * miniforge
+ * blender
  * rustup-init
  * golang
+ * n
  
 #### Post-Install Notes
  * Make sure to add `/opt/homebrew/bin/fish` to `/etc/shells`
- * To counter application signing issues, manually build `neovide` and `alacritty` from source.
- * For `alacritty` to have nice font-smoothing, run the following commands:
+ * For `wezterm` to have nice font-smoothing, run the following commands:
 <pre>
 defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
 defaults -currentHost write -globalDomain AppleFontSmoothing -int 2
@@ -46,10 +44,7 @@ defaults -currentHost write -globalDomain AppleFontSmoothing -int 2
 The packages to-be installed below are meant for Fedora.
 
 #### Fonts
- * Fira Code Nerd Font
  * JetBrains Mono Nerd Font
- * Hack Nerd Font
- * Ubuntu Mono Nerd Font
 
 #### Core Packages
  * git
@@ -63,19 +58,20 @@ The packages to-be installed below are meant for Fedora.
  * bat
  * sox
  * tmux
+ * helix (requires [COPR](https://copr.fedorainfracloud.org/coprs/varlad/helix/))
 
 #### UI Packages
- * fira-code-fonts
  * xclip
  * xprop
- * java-17-openjdk
  * bismuth
- * alacritty (sometimes requires [COPR](https://copr.fedorainfracloud.org/coprs/atim/alacritty/) for latest versions)
+ * wezterm (recommend using [FlatPak package](https://wezfurlong.org/wezterm/install/linux.html)
  
 #### Optional Packages
  * moby-engine
  * moby-engine-fish-completion
  * docker-compose
+ * fira-code-fonts
+ * java-17-openjdk
 
 #### Language Servers for Helix
  * pyright: `npm install -g pyright`
@@ -94,9 +90,13 @@ The packages to-be installed below are meant for Fedora.
 ### Local Modifications
 Modifications specific to a specific machines may be required to make things work best. 
 
-To insert local modifications:
+To insert local modifications (other than `wezterm`):
  1. Create a `local/` directory in the repository root directory. Git will ignore this directory.
  2. Create a `[appname].local.sh` shell script that takes in the parameter of the generated configuration file path. `[appname]` should refer to the application to be localized. For example, for Alacritty, this will be `alacritty`
+
+For localized `wezterm` configurations:
+ 1. Create a `local/` directory in the repository root directory (if not existing already). Git will ignore this directory.
+ 2. Create a `wezterm.local.lua` script that returns a table with overriden platform specific keys such as `font_size` and `line_height`
 
 For examples of localized modifications, see [examples/](examples/)
 

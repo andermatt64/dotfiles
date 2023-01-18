@@ -17,7 +17,7 @@ function main()
     { key = "PageDown", mods = "SHIFT", action = act.ScrollByPage(1) },
     { key = "Home", mods = "SHIFT", action = act.ScrollToTop },
     { key = "End", mods = "SHIFT", action = act.ScrollToBottom },
-    { key = 'l', mods = 'SHIFT|CTRL', action = act.ShowDebugOverlay },
+    { key = "l", mods = "SHIFT|CTRL", action = act.ShowDebugOverlay },
   }
    
   platform_specific = {
@@ -27,13 +27,13 @@ function main()
       freetype_load_target = "HorizontalLcd",
       freetype_load_flags = "DEFAULT",
       keys = {
-        { key = 'c', mods = 'SHIFT|CTRL', action = act.CopyTo 'Clipboard' },
-        { key = 'v', mods = 'SHIFT|CTRL', action = act.PasteFrom 'Clipboard' },
-        { key = 'r', mods = 'SHIFT|CTRL', action = act.ReloadConfiguration },
-        { key = 'f', mods = 'SHIFT|CTRL', action = act.Search 'CurrentSelectionOrEmptyString' },
-        { key = '=', mods = 'CTRL', action = act.IncreaseFontSize },
-        { key = '-', mods = 'CTRL', action = act.DecreaseFontSize },
-        { key = '0', mods = 'CTRL', action = act.ResetFontSize },
+        { key = "c", mods = "SHIFT|CTRL", action = act.CopyTo "Clipboard" },
+        { key = "v", mods = "SHIFT|CTRL", action = act.PasteFrom "Clipboard" },
+        { key = "r", mods = "SHIFT|CTRL", action = act.ReloadConfiguration },
+        { key = "f", mods = "SHIFT|CTRL", action = act.Search "CurrentSelectionOrEmptyString" },
+        { key = "=", mods = "CTRL", action = act.IncreaseFontSize },
+        { key = "-", mods = "CTRL", action = act.DecreaseFontSize },
+        { key = "0", mods = "CTRL", action = act.ResetFontSize },
       },
     },
     darwin = {
@@ -42,13 +42,13 @@ function main()
       freetype_load_target = "HorizontalLcd",
       freetype_load_flags = "DEFAULT",
       keys = {
-        { key = 'c', mods = 'SUPER', action = act.CopyTo 'Clipboard' },
-        { key = 'v', mods = 'SUPER', action = act.PasteFrom 'Clipboard' },
+        { key = "c", mods = "SUPER", action = act.CopyTo "Clipboard" },
+        { key = "v", mods = "SUPER", action = act.PasteFrom "Clipboard" },
         { key = "r", mods = "SUPER", action = act.ReloadConfiguration },
-        { key = 'f', mods = 'SUPER', action = act.Search 'CurrentSelectionOrEmptyString' },
-        { key = '=', mods = 'SUPER', action = act.IncreaseFontSize },
-        { key = '-', mods = 'SUPER', action = act.DecreaseFontSize },
-        { key = '0', mods = 'SUPER', action = act.ResetFontSize },
+        { key = "f", mods = "SUPER", action = act.Search "CurrentSelectionOrEmptyString" },
+        { key = "=", mods = "SUPER", action = act.IncreaseFontSize },
+        { key = "-", mods = "SUPER", action = act.DecreaseFontSize },
+        { key = "0", mods = "SUPER", action = act.ResetFontSize },
         
         { key = "n", mods = "SUPER", action = act.SpawnWindow },
       },
@@ -62,7 +62,17 @@ function main()
     for _, v in pairs(platform_options.keys) do 
       table.insert(global_keys, v) 
     end
+
+    local_config_path = wezterm.glob(wezterm.home_dir .. "/.config/wezterm/local_cfg.lua")
+    if #local_config_path == 1 then
+      local_config = loadfile(local_config_path[1])()
+
+      for k, v in pairs(local_config) do
+        platform_options[k] = v
+      end
+    end
   else
+    wezterm.log_error("Failed to load configuration: unsupported platform => " .. name)
     return {}
   end
     
@@ -111,6 +121,7 @@ function main()
 
     keys = global_keys,
 
+    window_close_confirmation = "NeverPrompt",
     exit_behavior = "Close",
   }
 end
