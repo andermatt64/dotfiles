@@ -4,6 +4,10 @@ theme = "dark_plus"
 cursorline = true
 bufferline = "multiple"
 true-color = true
+color-modes = true
+
+[editor.indent-guides]
+render = true
 
 [editor.cursor-shape]
 insert = "bar"

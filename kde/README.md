@@ -28,11 +28,11 @@ Tiling appearance is an exercise left to the reader but for uniformity, the foll
 Select `kde/kde-i3-like.kksrc` as the scheme to import.
 
 #### Open Terminal Shortcut
-Previously, **Custom Shortcuts** was used to define a global shortcut for opening a terminal. However, this settings option does not exist on KDE Wayland. To mitigate, we set up an Alacritty New Terminal shortcut that works just as well.
+Previously, **Custom Shortcuts** was used to define a global shortcut for opening a terminal. However, this settings option does not exist on KDE Wayland. To mitigate, we set up an `wezterm` New Terminal shortcut that works just as well.
 
-First, add Alacritty as an application shortcut.
-![Add Application Shortcut](kde_alacritty_term.png)
+First, add `wezterm` as an application shortcut.
+![Add Application Shortcut](kde_shortcut.png)
 
 Then, set preferred shortcut, `Alt-Enter`, to spawn a new terminal.
-![Set Keyboard Shortcut](kde_alacritty_shortcut.png)
+![Set Keyboard Shortcut](kde_term.png)
 
