@@ -1,4 +1,5 @@
-PYTHON := $(shell command -v python3 2> /dev/null)
+HAS_PYTHON := $(shell command -v python3 2>/dev/null)
+HAS_WEZTERM := $(shell command -v wezterm 2>/dev/null)
 PLATFORM := $(shell uname)
 
 LOCAL_BIN_DIR := $(HOME)/.local/bin
@@ -32,14 +33,14 @@ WEZTERM_TARGET := $(WEZTERM_CONFIG_DIR)/wezterm.lua
 POSTPROCESS_SCRIPT := scripts/postprocess.sh
 
 clean:
-	-@rm $(FISH_TARGET) $(TMUX_TARGET) $(HELIX_LANG_TARGET) $(HELIX_CONFIG_TARGET) $(WEZTERM_LOCAL_TARGET) $(WEZTERM_TARGET) $(WEZTERM_BIN_TARGET)
+	-@rm -f $(FISH_TARGET) $(TMUX_TARGET) $(HELIX_LANG_TARGET) $(HELIX_CONFIG_TARGET) $(WEZTERM_LOCAL_TARGET) $(WEZTERM_TARGET) $(WEZTERM_BIN_TARGET)
 	$(info Removed common linked targets)
 
 	-@rm -rf generated/
 	$(info Deleted generated configurations directory)
 
 generated:
-ifndef PYTHON
+ifndef HAS_PYTHON
 	$(error "No python3 binaries found in $(PATH); please install Python3 before continuing.")
 endif
 	@mkdir -p generated/
@@ -86,7 +87,7 @@ $(HELIX_LANG_TARGET): $(HELIX_PHONY_CONFIG)
 	$(info Linking $(HELIX_LANG_TARGET) to $(HELIX_LANG))
 
 $(WEZTERM_BIN_TARGET):
-ifeq (, $(shell which wezterm >/dev/null))
+ifndef HAS_WEZTERM
 	@mkdir -p $(LOCAL_BIN_DIR)
 	@ln -s $(shell pwd)/$(WEZTERM_BIN) $(WEZTERM_BIN_TARGET)
 	$(info Linking $(WEZTERM_BIN_TARGET) to $(WEZTERM_BIN))
