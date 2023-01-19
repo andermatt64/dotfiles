@@ -30,6 +30,10 @@ brew tap homebrew/cask-fonts
  * rustup-init
  * golang
  * n
+ * colima
+ * docker
+ * docker-compose
+ * docker-buildx
  
 #### Post-Install Notes
  * Make sure to add `/opt/homebrew/bin/fish` to `/etc/shells`
@@ -39,6 +43,7 @@ defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
 defaults -currentHost write -globalDomain AppleFontSmoothing -int 2
 </pre>
  * [Setup Amethyst with an i3-like experience](amethyst/README.md)
+ * Make sure to explicitly add Amethyst as a **Login Item**
 
 ### Linux Requirements
 The packages to-be installed below are meant for Fedora.
