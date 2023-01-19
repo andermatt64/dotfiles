@@ -11,7 +11,6 @@ brew tap homebrew/cask-fonts
  * fish
  * jq
  * starship
- * n
  * ripgrep
  * exa
  * bat
