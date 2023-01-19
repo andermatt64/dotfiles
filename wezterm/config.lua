@@ -84,10 +84,10 @@ function main()
 
     window_background_opacity = 0.9,
     window_padding = {
-      top = 2,
-      bottom = 2,
-      left = 2,
-      right = 2,
+      top = "1pt",
+      bottom = "1pt",
+      left = "1pt",
+      right = "1pt",
     },
 
     color_scheme = "Spring (Gogh)",
