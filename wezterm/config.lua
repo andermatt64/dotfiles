@@ -18,6 +18,13 @@ function main()
     { key = "Home", mods = "SHIFT", action = act.ScrollToTop },
     { key = "End", mods = "SHIFT", action = act.ScrollToBottom },
     { key = "l", mods = "SHIFT|CTRL", action = act.ShowDebugOverlay },
+    { key = "c", mods = "SHIFT|CTRL", action = act.CopyTo "Clipboard" },
+    { key = "v", mods = "SHIFT|CTRL", action = act.PasteFrom "Clipboard" },
+    { key = "r", mods = "SHIFT|CTRL", action = act.ReloadConfiguration },
+    { key = "f", mods = "SHIFT|CTRL", action = act.Search "CurrentSelectionOrEmptyString" },
+    { key = "=", mods = "CTRL", action = act.IncreaseFontSize },
+    { key = "-", mods = "CTRL", action = act.DecreaseFontSize },
+    { key = "0", mods = "CTRL", action = act.ResetFontSize },
   }
    
   platform_specific = {
@@ -26,15 +33,7 @@ function main()
       line_height = 0.9,
       freetype_load_target = "HorizontalLcd",
       freetype_load_flags = "DEFAULT",
-      keys = {
-        { key = "c", mods = "SHIFT|CTRL", action = act.CopyTo "Clipboard" },
-        { key = "v", mods = "SHIFT|CTRL", action = act.PasteFrom "Clipboard" },
-        { key = "r", mods = "SHIFT|CTRL", action = act.ReloadConfiguration },
-        { key = "f", mods = "SHIFT|CTRL", action = act.Search "CurrentSelectionOrEmptyString" },
-        { key = "=", mods = "CTRL", action = act.IncreaseFontSize },
-        { key = "-", mods = "CTRL", action = act.DecreaseFontSize },
-        { key = "0", mods = "CTRL", action = act.ResetFontSize },
-      },
+      keys = {},
     },
     darwin = {
       font_size = 12,
