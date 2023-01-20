@@ -37,7 +37,7 @@ function main()
     },
     darwin = {
       font_size = 12,
-      line_height = 0.93,
+      line_height = 1,
       freetype_load_target = "HorizontalLcd",
       freetype_load_flags = "DEFAULT",
       keys = {
