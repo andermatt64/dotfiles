@@ -26,6 +26,17 @@ All other key shortcuts can be undefined except for the following:
 | Toggle float for focused window | `Alt-Shift-Space` | `Ctrl-Shift-Space` |
 | Relaunch Amethyst | `Alt-Shift-R` | |
 
+**NOTE**: Don't forget to setup **Mission Control** key bindings
+
+#### MacOS System Settings
+ * **Desktop & Dock**
+   * **Mission Control**: Unselect _Automatically rearrange Spaces based on most recent use_
+ * **Keyboard**
+   * **Delay until repeat**: one notch to the left of _Short_
+   * **Keyboard Shortcuts**
+     * **Mission Control**
+       * _Switch to Desktop N_ should enabled and mapped to `Alt-N`
+  
 ### Floating
 ![Floating Settings](amethyst_floating.png)
 
