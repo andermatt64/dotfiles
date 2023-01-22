@@ -29,8 +29,8 @@ function main()
    
   platform_specific = {
     linux_gnu = {
-      font_size = 9.2,
-      line_height = 0.9,
+      font_size = 9,
+      line_height = 1,
       freetype_load_target = "HorizontalLcd",
       freetype_load_flags = "DEFAULT",
       keys = {},
