@@ -6,6 +6,9 @@ if status is-interactive
     
   set -x N_PREFIX ~/.local/
 
+  set -x EDITOR hx
+  set -x VISUAL hx
+  
   fish_add_path ~/.cargo/bin/
   fish_add_path ~/.local/bin/
     
