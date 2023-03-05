@@ -4,7 +4,11 @@
 ![General Settings](amethyst_general.png)
 
 ### Layouts
-![Layout Settings](amethyst_layouts.png)
+ * Tall
+ * Fullscreen
+ * 3Column Middle
+ * 3Column Left
+ * Column
 
 ### Shortcuts
 All other key shortcuts can be undefined except for the following:
@@ -20,14 +24,25 @@ All other key shortcuts can be undefined except for the following:
 | Force window to be reevaluated | Default | |
 | Throw focused window to space N | `Alt-Shift-N` | `Ctrl-Shift-N` |
 | Toggle float for focused window | `Alt-Shift-Space` | `Ctrl-Shift-Space` |
-| Toggle focus follows mouse | Default | |
-| Relaunch Amethyst | Default | |
+| Relaunch Amethyst | `Alt-Shift-R` | |
 
+**NOTE**: Don't forget to setup **Mission Control** key bindings
+
+#### MacOS System Settings
+ * **Desktop & Dock**
+   * **Mission Control**: Unselect _Automatically rearrange Spaces based on most recent use_
+ * **Keyboard**
+   * **Delay until repeat**: one notch to the left of _Short_
+   * **Keyboard Shortcuts**
+     * **Mission Control**
+       * _Switch to Desktop N_ should enabled and mapped to `Alt-N`
+  
 ### Floating
 ![Floating Settings](amethyst_floating.png)
 
 Example set of windows to be tiled by default:
  * Affinity Photo
+ * Blender
  * Final Cut Pro
  * DaVinci Resolve
  * Firefox
@@ -38,5 +53,4 @@ Example set of windows to be tiled by default:
  * Pages
  * Preview
  * Xcode
- * Alacritty
- * Neovide
+ * Wezterm

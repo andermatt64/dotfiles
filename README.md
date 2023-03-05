@@ -3,9 +3,9 @@ Modern dotfiles configuration that documents and sets up my optimal setup for Ma
 
 ### MacOS Requirements
 All packages require first installing [Homebrew](https://brew.sh) and installing the `homebrew/cask-fonts` tap using the following command:
-<pre>
+```
 brew tap homebrew/cask-fonts
-</pre>
+```
 
 #### Packages
  * fish
@@ -37,10 +37,10 @@ brew tap homebrew/cask-fonts
 #### Post-Install Notes
  * Make sure to add `/opt/homebrew/bin/fish` to `/etc/shells`
  * For `wezterm` to have nice font-smoothing, run the following commands:
-<pre>
+```
 defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
 defaults -currentHost write -globalDomain AppleFontSmoothing -int 2
-</pre>
+```
  * [Setup Amethyst with an i3-like experience](amethyst/README.md)
  * Make sure to explicitly add Amethyst as a **Login Item**
 
@@ -106,8 +106,8 @@ For examples of localized modifications, see [examples/](examples/)
 
 ### Appendix A: Docker setup
 The `docker` group is usually created after installing `moby-engine`. However, we need to run the following commands to add the proper users and enable automatic startup on reboot.
-<pre>
+```
 systemctl enable docker
 usermod -aG docker $USER
-</pre>
+```
 
