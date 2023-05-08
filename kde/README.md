@@ -25,7 +25,7 @@ Tiling appearance is an exercise left to the reader but for uniformity, the foll
 
 #### KWin and Tiling Shortcuts
 ![Import Shortcuts Scheme](import_shortcuts_scheme.png)
-Select `kde/kde-i3-like.kksrc` as the scheme to import.
+Select `kde/kde-wm.kksrc` as the scheme to import. Alternatively, you can load `kde/kde-amethyst.kksrc` to match Amethyst keyboard layout.
 
 #### Open Terminal Shortcut
 Previously, **Custom Shortcuts** was used to define a global shortcut for opening a terminal. However, this settings option does not exist on KDE Wayland. To mitigate, we set up an `wezterm` New Terminal shortcut that works just as well.
