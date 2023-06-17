@@ -17,6 +17,7 @@ brew tap homebrew/cask-fonts
  * sox
  * tmux
  * helix
+ * hexyl
 
 #### Casks
  * wezterm
@@ -63,6 +64,7 @@ The packages to-be installed below are meant for Fedora.
  * sox
  * tmux
  * helix (requires [COPR](https://copr.fedorainfracloud.org/coprs/varlad/helix/))
+ * hexyl
 
 #### UI Packages
  * xclip
