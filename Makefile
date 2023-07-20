@@ -20,6 +20,9 @@ HELIX_CONFIG_TARGET := $(HELIX_CONFIG_DIR)/config.toml
 TMUX_CHECK := $(shell tmux/checks.sh)
 TMUX_PHONY_CONFIG := generated/.tmux_config
 TMUX_CONFIG := tmux/tmux.conf
+TMUX_TPM_TARGET := $(HOME)/.tmux/plugins/tpm
+TMUX_HOSTNAME := tmux/hostname.sh
+TMUX_HOSTNAME_TARGET := $(HOME)/.tmux/hostname.sh
 TMUX_TARGET := $(HOME)/.tmux.conf
 
 WEZTERM_CONFIG_DIR := $(HOME)/.config/wezterm
@@ -33,10 +36,10 @@ WEZTERM_TARGET := $(WEZTERM_CONFIG_DIR)/wezterm.lua
 POSTPROCESS_SCRIPT := scripts/postprocess.sh
 
 clean:
-	-@rm -f $(FISH_TARGET) $(TMUX_TARGET) $(HELIX_LANG_TARGET) $(HELIX_CONFIG_TARGET) $(WEZTERM_LOCAL_TARGET) $(WEZTERM_TARGET) $(WEZTERM_BIN_TARGET)
+	-@rm -f $(FISH_TARGET) $(TMUX_TARGET) $(TMUX_HOSTNAME_TARGET) $(HELIX_LANG_TARGET) $(HELIX_CONFIG_TARGET) $(WEZTERM_LOCAL_TARGET) $(WEZTERM_TARGET) $(WEZTERM_BIN_TARGET)
 	$(info Removed common linked targets)
 
-	-@rm -rf generated/
+	-@rm -rf generated/ $(TMUX_TPM_TARGET)
 	$(info Deleted generated configurations directory)
 
 generated:
@@ -62,6 +65,18 @@ $(FISH_TARGET): $(FISH_PHONY_CONFIG)
 	@mkdir -p $(FISH_DIR)
 	@ln -s $(shell pwd)/$(FISH_CONFIG) $(FISH_TARGET)
 	$(info Linking $(FISH_TARGET) to $(FISH_CONFIG))
+
+$(TMUX_TPM_TARGET): 
+ifeq (1,${TMUX_CHECK})
+	@git clone https://github.com/tmux-plugins/tpm $(TMUX_TPM_TARGET)
+	$(info Cloning Tmux Plugin Manager to $(TMUX_TPM_TARGET))
+endif
+
+$(TMUX_HOSTNAME_TARGET):
+ifeq (1,${TMUX_CHECK})
+	@ln -s $(shell pwd)/$(TMUX_HOSTNAME) $(TMUX_HOSTNAME_TARGET)
+	$(info Linking $(TMUX_HOSTNAME) to $(TMUX_HOSTNAME_TARGET))
+endif
 
 $(TMUX_TARGET): $(TMUX_PHONY_CONFIG)
 ifeq (1,${TMUX_CHECK})
@@ -118,6 +133,6 @@ shell: fish tmux helix
 
 fish: $(FISH_TARGET)
 helix: $(HELIX_CONFIG_TARGET) $(HELIX_LANG_TARGET)
-tmux: $(TMUX_TARGET)
+tmux: $(TMUX_TPM_TARGET) $(TMUX_HOSTNAME_TARGET) $(TMUX_TARGET)
 wezterm: $(WEZTERM_TARGET) $(WEZTERM_LOCAL_TARGET) $(WEZTERM_BIN_TARGET)
 
