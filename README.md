@@ -44,7 +44,11 @@ defaults -currentHost write -globalDomain AppleFontSmoothing -int 2
 ```
  * [Setup Amethyst with an i3-like experience](amethyst/README.md)
  * Make sure to explicitly add Amethyst as a **Login Item**
-
+ * To make `hostname` return the correct value,
+ ```
+ sudo scutil --set HostName <YOUR_HOSTNAME>
+ ```
+ 
 ### Linux Requirements
 The packages to-be installed below are meant for Fedora.
 
