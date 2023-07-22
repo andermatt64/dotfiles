@@ -5,6 +5,7 @@
 
 ### Layouts
  * Tall
+ * Widescreen Tall (OPTIONAL)
  * Fullscreen
  * 3Column Middle
  * 3Column Left
@@ -17,6 +18,8 @@ All other key shortcuts can be undefined except for the following:
 | ----- | ----- | ----- |
 | Cycle layout forward | `Alt-.` | `Ctrl-.` |
 | Cycle layout backwards | `Alt-,` | `Ctrl-,` |
+| Increase main pane count | `Alt-Shift-.` | |
+| Decrease main pane count | `Alt-Shift-,` | |
 | Move focus counter clockwise | `Alt-j` | `Ctrl-j` |
 | Move focus clockwise | `Alt-k` | `Ctrl-k` |
 | Swap focused window counter clockwise | `Alt-Shift-j` | `Ctrl-Shift-j` |
