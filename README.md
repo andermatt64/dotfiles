@@ -48,6 +48,10 @@ defaults -currentHost write -globalDomain AppleFontSmoothing -int 2
  ```
  sudo scutil --set HostName <YOUR_HOSTNAME>
  ```
+ * To install `rust-analyzer`:
+ ```
+ rustup component add rust-analyzer 
+ ```
  
 ### Linux Requirements
 The packages to-be installed below are meant for Fedora.
