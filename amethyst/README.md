@@ -18,6 +18,8 @@ All other key shortcuts can be undefined except for the following:
 | ----- | ----- | ----- |
 | Cycle layout forward | `Alt-.` | `Ctrl-.` |
 | Cycle layout backwards | `Alt-,` | `Ctrl-,` |
+| Shrink main pane | `Alt-Shift-h` | |
+| Expand main pane | `Alt-Shift-l` | |
 | Increase main pane count | `Alt-Shift-.` | |
 | Decrease main pane count | `Alt-Shift-,` | |
 | Move focus counter clockwise | `Alt-j` | `Ctrl-j` |
