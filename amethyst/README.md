@@ -2,6 +2,8 @@
 
 ### General
 ![General Settings](amethyst_general.png)
+#### Note
+For less window movement when switching between desktops, disable **Smart Window Margins**
 
 ### Layouts
  * Tall
