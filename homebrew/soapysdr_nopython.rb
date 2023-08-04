@@ -1,4 +1,4 @@
-class Soapysdr < Formula
+class SoapysdrNopython < Formula
   desc "Vendor and platform neutral SDR support library"
   homepage "https://github.com/pothosware/SoapySDR/wiki"
   head "https://github.com/pothosware/SoapySDR.git"
