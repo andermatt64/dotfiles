@@ -14,7 +14,6 @@ brew tap homebrew/cask-fonts
  * ripgrep
  * exa
  * bat
- * sox
  * tmux
  * helix
  * hexyl
@@ -25,11 +24,16 @@ brew tap homebrew/cask-fonts
  * font-jetbrains-mono-nerd-font
 
 #### Optional
+ * n
+ * sox
+ * btop
  * miniforge
  * blender
  * rustup-init
  * golang
- * n
+ * lima
+
+ #### Optional (Docker)
  * colima
  * docker
  * docker-compose
@@ -47,10 +51,6 @@ defaults -currentHost write -globalDomain AppleFontSmoothing -int 2
  * To make `hostname` return the correct value,
  ```
  sudo scutil --set HostName <YOUR_HOSTNAME>
- ```
- * To install `rust-analyzer`:
- ```
- rustup component add rust-analyzer 
  ```
  
 ### Linux Requirements
@@ -81,16 +81,21 @@ The packages to-be installed below are meant for Fedora.
  * wezterm (recommend using [FlatPak package](https://wezfurlong.org/wezterm/install/linux.html))
  
 #### Optional Packages
+ * fira-code-fonts
+ * java-17-openjdk
+
+#### Optional (Docker)
  * moby-engine
  * moby-engine-fish-completion
  * docker-compose
- * fira-code-fonts
- * java-17-openjdk
 
 #### Language Servers Localizations for Helix
 The default LSP configurations don't always match in-line with what I want. For those cases, we have `languages.toml` to use custom LSPs.
  * **\[Python\]** pyright: `npm install -g pyright`
- 
+
+For Rust, `rustup` is the preferred way to install `rust-analyzer`
+ * `rustup component add rust-analyzer`
+
 #### Post-Install Notes
  * Make sure requisite [Nerd Fonts](https://www.nerdfonts.com/font-downloads) are installed
  * If `moby-engine` is installed,
