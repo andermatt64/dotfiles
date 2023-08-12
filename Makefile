@@ -1,4 +1,5 @@
 HAS_PYTHON := $(shell command -v python3 2>/dev/null)
+HAS_STARSHIP := $(shell command -v starship 2>/dev/null)
 HAS_WEZTERM := $(shell command -v wezterm 2>/dev/null)
 PLATFORM := $(shell uname)
 
@@ -16,6 +17,9 @@ HELIX_CONFIG := helix/config.toml
 HELIX_LANG := helix/languages.toml
 HELIX_LANG_TARGET := $(HELIX_CONFIG_DIR)/languages.toml
 HELIX_CONFIG_TARGET := $(HELIX_CONFIG_DIR)/config.toml
+
+STARSHIP_CONFIG_TARGET := $(HOME)/.config/starship.toml
+STARSHIP_CONFIG := starship/config.toml
 
 TMUX_CHECK := $(shell tmux/checks.sh)
 TMUX_PHONY_CONFIG := generated/.tmux_config
@@ -91,7 +95,7 @@ endif
 	$(info Helix environment check successful.)
 	@touch $(HELIX_PHONY_CONFIG)
 	@mkdir -p $(HELIX_CONFIG_DIR)
-	$(info Helic configuration files located in $(HELIX_CONFIG_DIR))
+	$(info Helix configuration files located in $(HELIX_CONFIG_DIR))
 	
 $(HELIX_CONFIG_TARGET): $(HELIX_PHONY_CONFIG)
 	@ln -s $(shell pwd)/$(HELIX_CONFIG) $(HELIX_CONFIG_TARGET)
@@ -100,6 +104,14 @@ $(HELIX_CONFIG_TARGET): $(HELIX_PHONY_CONFIG)
 $(HELIX_LANG_TARGET): $(HELIX_PHONY_CONFIG)
 	@ln -s $(shell pwd)/$(HELIX_LANG) $(HELIX_LANG_TARGET)
 	$(info Linking $(HELIX_LANG_TARGET) to $(HELIX_LANG))
+
+$(STARSHIP_CONFIG_TARGET):
+ifdef HAS_STARSHIP 
+	@ln -s $(shell pwd)/$(STARSHIP_CONFIG) $(STARSHIP_CONFIG_TARGET)
+	$(info Linking $(STARSHIP_CONFIG_TARGET) to $(STARSHIP_CONFIG))
+else
+	$(warning Starship binary not found.)
+endif
 
 $(WEZTERM_BIN_TARGET):
 ifndef HAS_WEZTERM
@@ -129,10 +141,11 @@ $(WEZTERM_TARGET): $(WEZTERM_CONFIG_DIR)
 
 all: core
 core: shell wezterm 
-shell: fish tmux helix
+shell: fish tmux helix starship
 
 fish: $(FISH_TARGET)
 helix: $(HELIX_CONFIG_TARGET) $(HELIX_LANG_TARGET)
+starship: $(STARSHIP_CONFIG_TARGET)
 tmux: $(TMUX_TPM_TARGET) $(TMUX_HOSTNAME_TARGET) $(TMUX_TARGET)
 wezterm: $(WEZTERM_TARGET) $(WEZTERM_LOCAL_TARGET) $(WEZTERM_BIN_TARGET)
 
