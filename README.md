@@ -93,6 +93,10 @@ The packages to-be installed below are meant for Fedora.
 The default LSP configurations don't always match in-line with what I want. For those cases, we have `languages.toml` to use custom LSPs.
  * **\[Python\]** pyright: `npm install -g pyright`
 
+For better web development code formatting, use `npm install -g prettier` to install Prettier.
+
+For better Python code formatting, use `conda install -n base black` to install Black.
+
 For Rust, `rustup` is the preferred way to install `rust-analyzer`
  * `rustup component add rust-analyzer`
 
