@@ -31,6 +31,7 @@ All other key shortcuts can be undefined except for the following:
 | Force window to be reevaluated | Default | |
 | Throw focused window to space N | `Alt-Shift-N` | `Ctrl-Shift-N` |
 | Toggle float for focused window | `Alt-Shift-Space` | `Ctrl-Shift-Space` |
+| Display current layout | `Alt-/` | |
 | Relaunch Amethyst | `Alt-Shift-R` | |
 
 **NOTE**: Don't forget to setup **Mission Control** key bindings
