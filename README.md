@@ -32,6 +32,7 @@ brew tap homebrew/cask-fonts
  * rustup-init
  * golang
  * lima
+ * ruby
 
  #### Optional (Docker)
  * colima
