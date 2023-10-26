@@ -1,6 +1,6 @@
-[[language]]
-name = "python"
-language-server = { command = "pyright-langserver", args = ["--stdio"] }
+[language-server.pyright-lsp]
+command = "pyright-langserver"
+args = ["--stdio"]
 config = """
 {
   "python": {
@@ -12,6 +12,10 @@ config = """
   }
 }
 """
+
+[[language]]
+name = "python"
+language-servers = [ "pyright-lsp"]
 formatter = { command = "black", args = ["--quiet", "-"] }
 auto-format = false
 
