@@ -12,8 +12,8 @@ if status is-interactive
   fish_add_path ~/.cargo/bin/
   fish_add_path ~/.local/bin/
   
-  if type -q exa
-    alias ls="exa"
+  if type -q eza
+    alias ls="eza"
   end
 
   if type -q bat

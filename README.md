@@ -12,7 +12,7 @@ brew tap homebrew/cask-fonts
  * jq
  * starship
  * ripgrep
- * exa
+ * eza
  * bat
  * tmux
  * helix
@@ -53,9 +53,11 @@ defaults -currentHost write -globalDomain AppleFontSmoothing -int 2
  ```
  sudo scutil --set HostName <YOUR_HOSTNAME>
  ```
- 
-### Linux Requirements
-The packages to-be installed below are meant for Fedora.
+
+### Linux Requirements (Debian)
+TBA
+
+### Linux Requirements (Fedora)
 
 #### Fonts
  * JetBrains Mono Nerd Font
@@ -68,7 +70,7 @@ The packages to-be installed below are meant for Fedora.
  * starship (requires [COPR](https://copr.fedorainfracloud.org/coprs/atim/starship/))
  * ripgrep
  * clang
- * exa
+ * eza
  * bat
  * sox
  * tmux

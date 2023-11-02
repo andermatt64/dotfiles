@@ -115,9 +115,13 @@ endif
 
 $(WEZTERM_BIN_TARGET):
 ifndef HAS_WEZTERM
+ifeq ($(PLATFORM),Linux)
 	@mkdir -p $(LOCAL_BIN_DIR)
 	@ln -s $(shell pwd)/$(WEZTERM_BIN) $(WEZTERM_BIN_TARGET)
 	$(info Linking $(WEZTERM_BIN_TARGET) to $(WEZTERM_BIN))
+else
+	$(info Homebrew Wezterm is not installed)
+endif
 else
 	$(info Wezterm binary already exists.)
 endif
