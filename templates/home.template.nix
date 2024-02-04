@@ -71,7 +71,7 @@
     enable = true;
 
     settings = {
-      theme = "catppuccin-mocha";
+      theme = "catppuccin-macchiato";
     };
   };
   programs.zoxide = {
@@ -81,6 +81,17 @@
   };
   programs.bat = {
     enable = true;
+
+    themes = {
+      catppuccin = {
+        src = pkgs.fetchFromGitHub {
+          owner = "catppuccin";
+          repo = "bat";
+          rev = "ba4d16880d63e656acced2b7d4e034e4a93f74b1";
+        };
+        file = "Catppuccin-macchiato.tmTheme";
+      };
+    };
   };
   programs.eza = {
     enable = true;
