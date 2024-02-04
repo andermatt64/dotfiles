@@ -92,6 +92,9 @@
         file = "Catppuccin-macchiato.tmTheme";
       };
     };
+    config = {
+      theme = "catpuccin";
+    }
   };
   programs.eza = {
     enable = true;
