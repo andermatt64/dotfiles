@@ -5,7 +5,7 @@
   home.stateVersion = "23.11";
 
   home.file = {
-    ".config/wezterm/wezterm.lua" = ./wezterm/config.lua;
+    ".config/wezterm/wezterm.lua".source = ./wezterm/config.lua;
   };
   home.sessionVariables = {};
   home.packages = [
