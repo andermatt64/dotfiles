@@ -47,7 +47,6 @@
     ];
     shellAliases = {
       cat = "bat";
-      cd = "z";
     };
     interactiveShellInit = ''
       starship init fish | source
