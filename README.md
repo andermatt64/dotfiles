@@ -33,10 +33,10 @@ TBA
 2. Use `chsh` to switch login shell to `fish`
 3. Consider manually installing [Questrial font](https://fonts.google.com/specimen/Questrial)
 4. In **System Settings**:
-  1. Add *Amethyst* explicitly as a **Login Item** in **System Settings**
-  2. Unselect *Automatically rearrange Spaces based on most recent use* under **Mission Control** panel in **Desktop & Dock**
-  3. Set *Delay until repeat* to one notch to the left of *Short* in **Keyboard**
-  4. Ensure *Switch to Desktop &lt;N&gt;* is enabled and mapped to *Alt-&lt;N&gt;* under **Mission Control** in **Keyboard Shortcuts** 
+    1. Add *Amethyst* explicitly as a **Login Item** in **System Settings**
+    2. Unselect *Automatically rearrange Spaces based on most recent use* under **Mission Control** panel in **Desktop & Dock**
+    3. Set *Delay until repeat* to one notch to the left of *Short* in **Keyboard**
+    4. Ensure *Switch to Desktop &lt;N&gt;* is enabled and mapped to *Alt-&lt;N&gt;* under **Mission Control** in **Keyboard Shortcuts** 
 5. For `wezterm` to have nice font-smoothing, consider running the following commands:
 <pre>
 defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
