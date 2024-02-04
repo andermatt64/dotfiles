@@ -54,7 +54,10 @@
           language-servers = ["pyright-lsp"];
           formatter = {
             command = "black";
-            args = ["--quiet", "-"];
+            args = [
+              "--quiet"    
+              "-"
+            ];
           };
           auto-format = false;
         }
@@ -62,42 +65,60 @@
           name = "html";
           formatter = {
             command = "prettier";
-            args = ["--parser", "html"];
+            args = [
+              "--parser" 
+              "html"
+            ];
           };
         }
         {
           name = "json";
           formatter = {
             command = "prettier";
-            args = ["--parser", "json"];
+            args = [
+              "--parser" 
+              "json"
+            ];
           };
         }
         {
           name = "css";
           formatter = {
             command = "prettier";
-            args = ["--parser", "css"];
+            args = [
+              "--parser" 
+              "css"
+            ];
           };
         }
         {
           name = "javascript";
           formatter = {
             command = "prettier";
-            args = ["--parser", "typescript"];
+            args = [
+              "--parser" 
+              "typescript"
+            ];
           };
         }
         {
           name = "typescript";
           formatter = {
             command = "prettier";
-            args = ["--parser", "typescript"];
+            args = [
+              "--parser"
+              "typescript"
+            ];
           };
         }
         {
           name = "tsx";
           formatter = {
             command = "prettier";
-            args = ["--parser", "typescript"];
+            args = [
+              "--parser"
+              "typescript"
+            ];
           };
         }
       ];
@@ -124,8 +145,16 @@
       set -x EDITOR hx
       set -x VISUAL hx
       
-      if test -e /opt/homebrew/bin/brew
+      if test -d /opt/homebrew/bin
         fish_add_path /opt/homebrew/bin
+      end
+
+      if test -d ~/.cargo/bin
+        fish_add_path ~/.cargo/bin
+      end
+
+      if test -d ~/.local/bin
+        fish_add_path ~/.local/bin
       end
     '';
     shellInit = ''
