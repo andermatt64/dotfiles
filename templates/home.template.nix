@@ -94,7 +94,7 @@
     };
     config = {
       theme = "catpuccin";
-    }
+    };
   };
   programs.eza = {
     enable = true;
