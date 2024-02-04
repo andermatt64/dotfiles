@@ -71,6 +71,11 @@
 
     settings = {
       theme = "catppuccin-macchiato";
+      ui = {
+        pane_frames = {
+          rounded_corners = true;
+        };
+      };
     };
   };
   programs.zoxide = {
@@ -93,7 +98,7 @@
       };
     };
     config = {
-      theme = "catpuccin";
+      theme = "catppuccin";
     };
   };
   programs.eza = {
