@@ -4,19 +4,27 @@ NIX_BIN := nix
 NIX_HOME_CONFIG := $(HOME)/.config/nix/nix.conf
 NIX_GLOBAL_CONFIG := /etc/nix/nix.conf
 
+BREW_CASK_TARGETS := amethyst dbeaver-community firefox godot google-chrome qflipper wezterm
+
 FLAKE_TEMPLATE_DIR := ./templates
 FLAKE_GENERATOR := ./scripts/generate-flake
 FLAKE_TARGETS := flake.nix home.nix
 
-all: ${FLAKE_TARGETS} 
-	$(info TODO: nix run)
-	
+all: deps_check casks ${FLAKE_TARGETS} 
+	$(info Building and switching to new nix home-manager configuration...)
+	@${NIX_BIN} run path:$(pwd) -- switch --flake path:$(pwd)
+
+build: deps_check casks ${FLAKE_TARGETS}
+	$(info Building nix home-manager configuration...)
+	@${NIX_BIN} run path:$(pwd) -- build --flake path:$(pwd)
+	 
 clean:
 	$(info Removing ${FLAKE_TARGETS})
 	-@rm ${FLAKE_TARGETS}
 
-casks:
-	$(info TODO: install casks)
+casks: deps_check
+	$(info Installing Homebrew casks: ${BREW_CASK_TARGETS})
+	@brew install ${BREW_CASK_TARGETS}
 	
 deps_check:
 ifeq ("$(shell which brew)", "")
@@ -28,9 +36,8 @@ endif
 ifeq ("$(shell grep "^experimental-features = nix-command flakes" $(shell test -e ${NIX_HOME_CONFIG} && echo ${NIX_HOME_CONFIG}) $(shell test -e ${NIX_GLOBAL_CONFIG} && echo ${NIX_GLOBAL_CONFIG}) /dev/null 2>/dev/null)", "")
 	$(error Nix experimental flakes not enabled. Please enable flakes by following instructions here: https://nixos.wiki/wiki/Flakes)
 endif
-	$(info Dependencies check completed: satisfied)
 
-.PHONY: all casks clean deps_check
+.PHONY: all build casks clean deps_check
 
 %.nix: ${FLAKE_TEMPLATE_DIR}/%.template.nix
 	$(info Generating $@ from $<)

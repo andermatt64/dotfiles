@@ -6,12 +6,15 @@
 
   home.file = {
     ".config/wezterm/wezterm.lua".source = ./wezterm/config.lua;
+    ".amethyst.yml".source = ./amethyst/amethyst.yml;
   };
   home.sessionVariables = {};
   home.packages = [
     pkgs.xq-xml
     pkgs.hexyl
     pkgs.sox
+    pkgs.xz
+    pkgs.josm
     pkgs.nerdfonts
     pkgs.b612
   ];
