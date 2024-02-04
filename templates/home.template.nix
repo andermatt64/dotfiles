@@ -13,6 +13,7 @@
     pkgs.hexyl
     pkgs.sox
     pkgs.nerdfonts
+    pkgs.b612
   ];
   
   programs.home-manager.enable = true;
