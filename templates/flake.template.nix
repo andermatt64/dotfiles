@@ -10,7 +10,7 @@
   };
 
   outputs = {nixpkgs, home-manager, ...}: {
-    defaultPackage = home-manager.defaultPackage.${{TPL:system}};
+    defaultPackage.${{TPL:system}} = home-manager.defaultPackage.${{TPL:system}};
     
     homeConfigurations =
       let
