@@ -49,6 +49,9 @@
       cat = "bat";
       cd = "z";
     };
+    interactiveShellInit = ''
+      starship init fish | source
+    '';
     shellInit = ''
       if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
         fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
@@ -68,7 +71,9 @@
   programs.zellij = {
     enable = true;
 
-    enableFishIntegration = true;
+    settings = {
+      theme = "catppuccin-mocha";
+    };
   };
   programs.zoxide = {
     enable = true;
