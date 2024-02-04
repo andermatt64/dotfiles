@@ -34,12 +34,24 @@
   programs.fish = {
     enable = true;
 
-    plugins = [];
+    plugins = [
+      {
+        name = "foreign-env";
+        src = pkgs.fetchFromGitHub {
+          owner = "oh-my-fish";
+          repo = "plugin-foreign-env";
+          rev = "7f0cf099ae1e1e4ab38f46350ed6757d54471de7";
+        };
+      };
+    ];
     shellAliases = {
       cat = "bat";
       cd = "z";
     };
     shellInit = ''
+      if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+        fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+      end
     '';
   };
   programs.starship = {
