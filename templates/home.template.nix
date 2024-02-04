@@ -4,7 +4,9 @@
 
   home.stateVersion = "23.11";
 
-  home.file = {};
+  home.file = {
+    ".config/wezterm/wezterm.lua" = ./wezterm/config.lua;
+  };
   home.sessionVariables = {};
   home.packages = [
     pkgs.xq-xml
@@ -17,6 +19,7 @@
   programs.helix = {
     enable = true;
 
+    defaultEditor = true;
     settings = {
       theme = "dark_plus";
       editor = {
@@ -29,7 +32,76 @@
         cursor-shape.insert = "bar";
       };
     };
-    languages = {};
+    languages = {
+      language-server.pyright-lsp = {
+        command = "pyright-langserver";
+        args = ["--stdio"];
+        config = ''
+          {
+            "python": {
+              "analysis": {
+                "autoSearchPaths": true,
+                "diagnosticMode": "workspace",
+                "useLibraryCodeForTypes": true
+              }
+            }
+          }
+        '';
+      };
+      language = [
+        {
+          name = "python";
+          language-servers = ["pyright-lsp"];
+          formatter = {
+            command = "black";
+            args = ["--quiet", "-"];
+          };
+          auto-format = false;
+        }
+        {
+          name = "html";
+          formatter = {
+            command = "prettier";
+            args = ["--parser", "html"];
+          };
+        }
+        {
+          name = "json";
+          formatter = {
+            command = "prettier";
+            args = ["--parser", "json"];
+          };
+        }
+        {
+          name = "css";
+          formatter = {
+            command = "prettier";
+            args = ["--parser", "css"];
+          };
+        }
+        {
+          name = "javascript";
+          formatter = {
+            command = "prettier";
+            args = ["--parser", "typescript"];
+          };
+        }
+        {
+          name = "typescript";
+          formatter = {
+            command = "prettier";
+            args = ["--parser", "typescript"];
+          };
+        }
+        {
+          name = "tsx";
+          formatter = {
+            command = "prettier";
+            args = ["--parser", "typescript"];
+          };
+        }
+      ];
+    };
   };
   programs.fish = {
     enable = true;
@@ -49,6 +121,12 @@
       cat = "bat";
     };
     interactiveShellInit = ''
+      set -x EDITOR hx
+      set -x VISUAL hx
+      
+      if test -e /opt/homebrew/bin/brew
+        fish_add_path /opt/homebrew/bin
+      end
     '';
     shellInit = ''
       if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
@@ -65,17 +143,16 @@
   };
   programs.btop = {
     enable = true;
+
+    settings = {
+      color_theme = "onedark";
+    };
   };
   programs.zellij = {
     enable = true;
 
     settings = {
       theme = "catppuccin-macchiato";
-      ui = {
-        pane_frames = {
-          rounded_corners = true;
-        };
-      };
     };
   };
   programs.zoxide = {
@@ -104,6 +181,7 @@
   programs.eza = {
     enable = true;
     git = true;
+    icons = true;
     enableAliases = true;
   };
   programs.jq.enable = true;
