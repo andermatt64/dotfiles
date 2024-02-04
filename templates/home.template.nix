@@ -47,7 +47,7 @@
     enable = true;
 
     settings = {
-      battery.disable = true;
+      battery.disabled = true;
     };
   };
   programs.btop = {
