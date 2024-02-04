@@ -36,7 +36,6 @@
 
     plugins = [];
     shellAliases = {
-      ls = "eza";
       cat = "bat";
       cd = "z";
     };
@@ -62,6 +61,14 @@
     enable = true;
     
     enableFishIntegration = true;
+  };
+  programs.bat = {
+    enable = true;
+  };
+  programs.eza = {
+    enable = true;
+    git = true;
+    enableAliases = true;
   };
   programs.jq.enable = true;
   programs.ripgrep.enable = true;
