@@ -1,155 +1,20 @@
-HAS_PYTHON := $(shell command -v python3 2>/dev/null)
-HAS_STARSHIP := $(shell command -v starship 2>/dev/null)
-HAS_WEZTERM := $(shell command -v wezterm 2>/dev/null)
-PLATFORM := $(shell uname)
+FLAKE_TEMPLATE_DIR := ./templates
+FLAKE_GENERATOR := ./scripts/generate-flake
+FLAKE_TARGETS := flake.nix home.nix
 
-LOCAL_BIN_DIR := $(HOME)/.local/bin
-
-FISH_PHONY_CONFIG := generated/.fish_config
-FISH_CONFIG := fish/config.fish
-FISH_CHECK := $(shell fish/checks.sh)
-FISH_DIR := $(HOME)/.config/fish
-FISH_TARGET := $(FISH_DIR)/config.fish
-
-HELIX_CHECK := $(shell helix/checks.sh)
-HELIX_CONFIG_DIR := $(HOME)/.config/helix
-HELIX_CONFIG := helix/config.toml
-HELIX_LANG := helix/languages.toml
-HELIX_LANG_TARGET := $(HELIX_CONFIG_DIR)/languages.toml
-HELIX_CONFIG_TARGET := $(HELIX_CONFIG_DIR)/config.toml
-
-STARSHIP_CONFIG_TARGET := $(HOME)/.config/starship.toml
-STARSHIP_CONFIG := starship/config.toml
-
-TMUX_CHECK := $(shell tmux/checks.sh)
-TMUX_PHONY_CONFIG := generated/.tmux_config
-TMUX_CONFIG := tmux/tmux.conf
-TMUX_TPM_TARGET := $(HOME)/.tmux/plugins/tpm
-TMUX_HOSTNAME := tmux/hostname.sh
-TMUX_HOSTNAME_TARGET := $(HOME)/.tmux/hostname.sh
-TMUX_TARGET := $(HOME)/.tmux.conf
-
-WEZTERM_CONFIG_DIR := $(HOME)/.config/wezterm
-WEZTERM_BIN_TARGET := $(LOCAL_BIN_DIR)/wezterm
-WEZTERM_BIN := wezterm/wezterm
-WEZTERM_LOCAL_SCRIPT := local/wezterm.local.lua
-WEZTERM_LOCAL_TARGET := $(WEZTERM_CONFIG_DIR)/local_cfg.lua
-WEZTERM_TARGET_SCRIPT := wezterm/config.lua
-WEZTERM_TARGET := $(WEZTERM_CONFIG_DIR)/wezterm.lua
-
-POSTPROCESS_SCRIPT := scripts/postprocess.sh
-
+all: ${FLAKE_TARGETS} 
+	
 clean:
-	-@rm -f $(FISH_TARGET) $(TMUX_TARGET) $(TMUX_HOSTNAME_TARGET) $(HELIX_LANG_TARGET) $(HELIX_CONFIG_TARGET) $(WEZTERM_LOCAL_TARGET) $(WEZTERM_TARGET) $(WEZTERM_BIN_TARGET)
-	$(info Removed common linked targets)
+	$(info Removing ${FLAKE_TARGETS})
+	-@rm ${FLAKE_TARGETS}
+	  
+.PHONY: all clean
 
-	-@rm -rf generated/ $(TMUX_TPM_TARGET)
-	$(info Deleted generated configurations directory)
+flake.nix: ${FLAKE_TEMPLATE_DIR}/flake.template.nix
+	$(info Generating $@ from $<)
+	@${FLAKE_GENERATOR} --output $@ $<
 
-generated:
-ifndef HAS_PYTHON
-	$(error "No python3 binaries found in $(PATH); please install Python3 before continuing.")
-endif
-	@mkdir -p generated/
-	$(info Created generated configurations directory)
-
-$(FISH_PHONY_CONFIG): generated
-ifneq (1,$(FISH_CHECK))
-	$(error Fish environment check failed: cannot find fish binary.)
-endif
-	$(info Fish environment check successful.)
-	@touch $(FISH_PHONY_CONFIG)
-	$(info Fish configuration file at $(FISH_CONFIG))
-
-$(TMUX_PHONY_CONFIG): generated
-	@touch $(TMUX_PHONY_CONFIG)
-	$(info tmux configuration file at $(TMUX_CONFIG))
-
-$(FISH_TARGET): $(FISH_PHONY_CONFIG)
-	@mkdir -p $(FISH_DIR)
-	@ln -s $(shell pwd)/$(FISH_CONFIG) $(FISH_TARGET)
-	$(info Linking $(FISH_TARGET) to $(FISH_CONFIG))
-
-$(TMUX_TPM_TARGET): 
-ifeq (1,${TMUX_CHECK})
-	@git clone https://github.com/tmux-plugins/tpm $(TMUX_TPM_TARGET)
-	$(info Cloning Tmux Plugin Manager to $(TMUX_TPM_TARGET))
-endif
-
-$(TMUX_HOSTNAME_TARGET):
-ifeq (1,${TMUX_CHECK})
-	@ln -s $(shell pwd)/$(TMUX_HOSTNAME) $(TMUX_HOSTNAME_TARGET)
-	$(info Linking $(TMUX_HOSTNAME) to $(TMUX_HOSTNAME_TARGET))
-endif
-
-$(TMUX_TARGET): $(TMUX_PHONY_CONFIG)
-ifeq (1,${TMUX_CHECK})
-	@ln -s $(shell pwd)/$(TMUX_CONFIG) $(TMUX_TARGET)
-	$(info Linking $(TMUX_CONFIG) to $(TMUX_TARGET))
-endif
-
-$(HELIX_PHONY_CONFIG): generated
-ifneq (1,${HELIX_CHECK})
-	$(error Helix environment check failed: cannot find helix editor binary)
-endif
-	$(info Helix environment check successful.)
-	@touch $(HELIX_PHONY_CONFIG)
-	@mkdir -p $(HELIX_CONFIG_DIR)
-	$(info Helix configuration files located in $(HELIX_CONFIG_DIR))
-	
-$(HELIX_CONFIG_TARGET): $(HELIX_PHONY_CONFIG)
-	@ln -s $(shell pwd)/$(HELIX_CONFIG) $(HELIX_CONFIG_TARGET)
-	$(info Linking $(HELIX_CONFIG_TARGET) to $(HELIX_CONFIG))
-	
-$(HELIX_LANG_TARGET): $(HELIX_PHONY_CONFIG)
-	@ln -s $(shell pwd)/$(HELIX_LANG) $(HELIX_LANG_TARGET)
-	$(info Linking $(HELIX_LANG_TARGET) to $(HELIX_LANG))
-
-$(STARSHIP_CONFIG_TARGET):
-ifdef HAS_STARSHIP 
-	@ln -s $(shell pwd)/$(STARSHIP_CONFIG) $(STARSHIP_CONFIG_TARGET)
-	$(info Linking $(STARSHIP_CONFIG_TARGET) to $(STARSHIP_CONFIG))
-else
-	$(warning Starship binary not found.)
-endif
-
-$(WEZTERM_BIN_TARGET):
-ifndef HAS_WEZTERM
-ifeq ($(PLATFORM),Linux)
-	@mkdir -p $(LOCAL_BIN_DIR)
-	@ln -s $(shell pwd)/$(WEZTERM_BIN) $(WEZTERM_BIN_TARGET)
-	$(info Linking $(WEZTERM_BIN_TARGET) to $(WEZTERM_BIN))
-else
-	$(info Homebrew Wezterm is not installed)
-endif
-else
-	$(info Wezterm binary already exists.)
-endif
-
-$(WEZTERM_CONFIG_DIR):
-	@mkdir -p $(WEZTERM_CONFIG_DIR)
-	$(info Creating $(WEZTERM_CONFIG_DIR))
-	
-$(WEZTERM_LOCAL_TARGET): $(WEZTERM_CONFIG_DIR)
-ifeq (,$(wildcard $(WEZTERM_LOCAL_SCRIPT)))
-	$(info No wezterm localizations found.)
-else
-	@ln -s $(shell pwd)/$(WEZTERM_LOCAL_SCRIPT) $(WEZTERM_LOCAL_TARGET)
-	$(info Linking $(WEZTERM_LOCAL_TARGET) to $(WEZTERM_LOCAL_SCRIPT))
-endif
-
-$(WEZTERM_TARGET): $(WEZTERM_CONFIG_DIR)
-	@ln -s $(shell pwd)/$(WEZTERM_TARGET_SCRIPT) $(WEZTERM_TARGET)
-	$(info Linking $(WEZTERM_TARGET) to $(WEZTERM_TARGET_SCRIPT))
-
-
-all: core
-core: shell wezterm 
-shell: fish tmux helix starship
-
-fish: $(FISH_TARGET)
-helix: $(HELIX_CONFIG_TARGET) $(HELIX_LANG_TARGET)
-starship: $(STARSHIP_CONFIG_TARGET)
-tmux: $(TMUX_TPM_TARGET) $(TMUX_HOSTNAME_TARGET) $(TMUX_TARGET)
-wezterm: $(WEZTERM_TARGET) $(WEZTERM_LOCAL_TARGET) $(WEZTERM_BIN_TARGET)
+home.nix: ${FLAKE_TEMPLATE_DIR}/home.template.nix
+	$(info Generating $@ from $<)
+	@${FLAKE_GENERATOR} --output $@ $<
 
