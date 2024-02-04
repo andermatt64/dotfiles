@@ -4,7 +4,7 @@ NIX_BIN := nix
 NIX_HOME_CONFIG := $(HOME)/.config/nix/nix.conf
 NIX_GLOBAL_CONFIG := /etc/nix/nix.conf
 
-BREW_CASK_TARGETS := amethyst dbeaver-community firefox godot google-chrome qflipper wezterm
+BREW_CASK_TARGETS := amethyst dbeaver-community firefox google-chrome wezterm
 
 FLAKE_TEMPLATE_DIR := ./templates
 FLAKE_GENERATOR := ./scripts/generate-flake

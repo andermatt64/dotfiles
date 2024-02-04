@@ -122,12 +122,12 @@ reevaluate-windows:
   key: z
 
 throw-space-left:
-  mod: null
-  key: null
+  mod: mod2
+  key: left
 
 throw-space-right:
-  mod: null
-  key: null
+  mod: mod2
+  key: right
 
 throw-space-1:
   mod: mod2

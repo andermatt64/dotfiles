@@ -27,7 +27,6 @@ TBA
 2. In the repository root directory, run `make all`. This should verify all the prerequisites are in place and run `nix run path:$(pwd) -- switch --flake path:$(pwd)`. 
 
 ## Post Install
-
 ### MacOS
 1. Add `~/.nix-profile/bin/fish` to `/etc/shells`
 2. Use `chsh` to switch login shell to `fish`
@@ -37,7 +36,20 @@ TBA
     2. Unselect *Automatically rearrange Spaces based on most recent use* under **Mission Control** panel in **Desktop & Dock**
     3. Set *Delay until repeat* to one notch to the left of *Short* in **Keyboard**
     4. Ensure *Switch to Desktop &lt;N&gt;* is enabled and mapped to *Alt-&lt;N&gt;* under **Mission Control** in **Keyboard Shortcuts** 
-5. For `wezterm` to have nice font-smoothing, consider running the following commands:
+5. In the **Shortcuts** tab pane under *Amethyst Settings*, clear the following shortcuts:
+    1. **Move focus to main window**
+    2. **Move focus to counter clockwise screen**
+    3. **Move focus to clockwise screen**
+    4. **Swap focused window to counter clockwise screen**
+    5. **Swap focused window to clockwise screen**
+    6. **Swap focused window with main window**
+    7. **Focus screen &lt;N&gt;**
+    8. **Throw focused window to screen &lt;N&gt;**
+    9. **Select Tall layout**
+    10. **Select Wide layout**
+    11. **Select Fullscreen layout**
+    12. **Select Column layout**
+6. For `wezterm` to have nice font-smoothing, consider running the following commands:
 <pre>
 defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
 defaults -currentHost write -globalDomain AppleFontSmoothing -int 2
