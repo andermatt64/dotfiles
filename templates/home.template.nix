@@ -14,7 +14,6 @@
     pkgs.hexyl
     pkgs.sox
     pkgs.xz
-    pkgs.josm
     pkgs.nerdfonts
     pkgs.b612
   ];

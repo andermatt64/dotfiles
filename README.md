@@ -39,18 +39,18 @@ TBA
     3. Set *Delay until repeat* to one notch to the left of *Short* in **Keyboard**
     4. Ensure *Switch to Desktop &lt;N&gt;* is enabled and mapped to *Alt-&lt;N&gt;* under **Mission Control** in **Keyboard Shortcuts** 
 5. In the **Shortcuts** tab pane under *Amethyst Settings*, clear the following shortcuts:
-    1. **Move focus to main window**
-    2. **Move focus to counter clockwise screen**
-    3. **Move focus to clockwise screen**
-    4. **Swap focused window to counter clockwise screen**
-    5. **Swap focused window to clockwise screen**
-    6. **Swap focused window with main window**
-    7. **Focus screen &lt;N&gt;**
-    8. **Throw focused window to screen &lt;N&gt;**
-    9. **Select Tall layout**
-    10. **Select Wide layout**
-    11. **Select Fullscreen layout**
-    12. **Select Column layout**
+    * **Move focus to main window**
+    * **Move focus to counter clockwise screen**
+    * **Move focus to clockwise screen**
+    * **Swap focused window to counter clockwise screen**
+    * **Swap focused window to clockwise screen**
+    * **Swap focused window with main window**
+    * **Focus screen &lt;N&gt;**
+    * **Throw focused window to screen &lt;N&gt;**
+    * **Select Tall layout**
+    * **Select Wide layout**
+    * **Select Fullscreen layout**
+    * **Select Column layout**
 6. For `wezterm` to have nice font-smoothing, consider running the following commands:
 <pre>
 defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
