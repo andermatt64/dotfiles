@@ -2,9 +2,10 @@
 Modern dotfiles configuration that documents and sets up my optimal development setup for MacOS and Linux.
 
 ## Overview
-The main rationales behind moving to a Nix-based approach:
+The main rationale behind moving to a Nix-based approach:
 * **Increased efficiency:** integrated configuration management and application installation
 * **Dependency isolation:** Less software version conflicts and pollution of global install.
+* **Easier customization:** Popular tools are automatically set up close to our preferences.
 
 ### MacOS
 Nix will be mostly used to automate the installation and configuration of command-line tools. UI-extensive applications such as terminals, browsers, etc. will still be installed via Homebrew Casks. 
@@ -59,3 +60,21 @@ defaults -currentHost write -globalDomain AppleFontSmoothing -int 2
 
 ### Linux
 TBA
+
+### Rust Toolchain Installation
+Install and set the default toolchain to be *stable*:
+<pre>
+rustup default stable
+</pre>
+
+Install `rust-analyzer`:
+<pre>
+rustup component add rust-analyzer
+</pre>
+
+## Garbage Collection
+Occasionally, Nix store grows quite large because of orphaned packages. Use
+<pre>
+make gc
+</pre>
+to clean up.
