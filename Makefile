@@ -1,5 +1,7 @@
 HOMEBREW_BIN := brew
 NIX_BIN := nix
+NIXENV_BIN := nix-env
+NIXSTORE_BIN := nix-store
 
 NIX_HOME_CONFIG := $(HOME)/.config/nix/nix.conf
 NIX_GLOBAL_CONFIG := /etc/nix/nix.conf
@@ -26,6 +28,11 @@ casks: macos_deps_check
 	$(info Installing Homebrew casks: ${BREW_CASK_TARGETS})
 	@brew install ${BREW_CASK_TARGETS}
 
+gc:
+	$(info Running nix garbage collection on old generations...)
+	@${NIXENV_BIN} --delete-generations old
+	@${NIXSTORE_BIN} --gc
+
 macos_deps_check:
 ifeq ("$(shell which brew)", "")
 	$(error Homebrew is not installed. Please install Homebrew by following instructions here: https://brew.sh)
@@ -39,7 +46,7 @@ ifeq ("$(shell grep "^experimental-features = nix-command flakes" $(shell test -
 	$(error Nix experimental flakes not enabled. Please enable flakes by following instructions here: https://nixos.wiki/wiki/Flakes)
 endif
 
-.PHONY: all build casks clean deps_check macos_deps_check
+.PHONY: all build casks clean deps_check gc macos_deps_check
 
 %.nix: ${FLAKE_TEMPLATE_DIR}/%.template.nix
 	$(info Generating $@ from $<)

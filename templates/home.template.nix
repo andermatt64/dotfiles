@@ -151,7 +151,6 @@
     interactiveShellInit = ''
       set -x EDITOR hx
       set -x VISUAL hx
-      set -x PASTEL_COLOR_MODE 24bit
       
       if test -d /opt/homebrew/bin
         fish_add_path /opt/homebrew/bin
