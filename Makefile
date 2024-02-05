@@ -14,11 +14,11 @@ FLAKE_TARGETS := flake.nix home.nix
 
 all: deps_check ${FLAKE_TARGETS} 
 	$(info Building and switching to new nix home-manager configuration...)
-	@${NIX_BIN} run path:$(pwd) -- switch --flake path:$(pwd)
+	@${NIX_BIN} run path:$(shell pwd) -- switch --flake path:$(shell pwd)
 
 build: deps_check ${FLAKE_TARGETS}
 	$(info Building nix home-manager configuration...)
-	@${NIX_BIN} run path:$(pwd) -- build --flake path:$(pwd)
+	@${NIX_BIN} run path:$(shell pwd) -- build --flake path:$(shell pwd)
 	 
 clean:
 	$(info Removing ${FLAKE_TARGETS})

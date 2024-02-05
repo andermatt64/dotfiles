@@ -20,6 +20,9 @@ TBA
 3. Install [Homebrew](https://brew.sh)
 4. Install [Nix: the package manager](https://nixos.org/download#nix-install-macos) and restart the shell
 5. Enable flakes support by creating `~/.config/nix/nix.conf` with the following contents: `experimental-features = nix-command flakes`
+<pre>
+echo experimental-features = nix-command flakes > ~/.config/nix/nix.conf
+</pre>
 
 ### Linux
 TBA
@@ -27,8 +30,8 @@ TBA
 ## Installation
 1. Checkout [dotfiles](https://github.com/andermatt64/dotfiles) repository: `git clone https://github.com/andermatt64/dotfiles`
 2. In a terminal, change the current directory into the repository root, `dotfiles`
-3. On a MacOS machine, run `make casks` to install Homebrew casks.
-4. Run `make` -- this should verify all the prerequisites are in place and run `nix run path:$(pwd) -- switch --flake path:$(pwd)`. 
+3. Run `make` -- this should verify all the prerequisites are in place and run `nix run path:$(pwd) -- switch --flake path:$(pwd)`. 
+4. On a MacOS machine, start a new session and run `make casks` to install Homebrew casks.
 
 ## Post Install
 ### MacOS
@@ -53,22 +56,17 @@ TBA
     * **Select Wide layout**
     * **Select Fullscreen layout**
     * **Select Column layout**
-6. For `wezterm` to have nice font-smoothing, consider running the following commands:
-<pre>
-defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
-defaults -currentHost write -globalDomain AppleFontSmoothing -int 2
-</pre>
 
 ### Linux
 TBA
 
 ### Rust Toolchain Installation
-Install and set the default toolchain to be *stable*:
+Install and set the default toolchain to be **stable**:
 <pre>
 rustup default stable
 </pre>
 
-Install `rust-analyzer`:
+Install **rust-analyzer**:
 <pre>
 rustup component add rust-analyzer
 </pre>
