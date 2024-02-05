@@ -10,6 +10,7 @@
   };
   home.sessionVariables = {};
   home.packages = [
+    pkgs.rustup
     pkgs.xq-xml
     pkgs.hexyl
     pkgs.sox
