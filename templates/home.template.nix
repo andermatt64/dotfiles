@@ -13,6 +13,10 @@
     pkgs.xq-xml
     pkgs.hexyl
     pkgs.sox
+    pkgs.pastel
+    pkgs.mdcat
+    pkgs.tokei
+    pkgs.ripsecrets
     pkgs.xz
     pkgs.nerdfonts
     pkgs.b612
