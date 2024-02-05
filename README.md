@@ -36,7 +36,7 @@ TBA
 
 ## Post Install
 ### MacOS
-1. Add `~/.nix-profile/bin/fish` to `/etc/shells`
+1. Add `~/.nix-profile/bin/fish` to `/etc/shells`: `echo ${HOME}/.nix-profile/bin/fish | sudo tee -a /etc/shells`
 2. Use `chsh` to switch login shell to `fish`
 3. Consider manually installing [Questrial font](https://fonts.google.com/specimen/Questrial)
 4. In **System Settings**:
