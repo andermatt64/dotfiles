@@ -15,10 +15,11 @@ TBA
  
 ## Prerequisites
 ### MacOS
-1. Enable FileVault and reboot the machine
-2. Install [Homebrew](https://brew.sh)
-3. Install [Nix: the package manager](https://nixos.org/download#nix-install-macos) and restart the shell
-4. Enable flakes support by creating `~/.config/nix/nix.conf` with the following contents: `experimental-features = nix-command flakes`
+1. Set a hostname for the machine
+2. Enable *FileVault* and reboot the machine
+3. Install [Homebrew](https://brew.sh)
+4. Install [Nix: the package manager](https://nixos.org/download#nix-install-macos) and restart the shell
+5. Enable flakes support by creating `~/.config/nix/nix.conf` with the following contents: `experimental-features = nix-command flakes`
 
 ### Linux
 TBA
