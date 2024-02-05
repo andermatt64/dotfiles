@@ -21,6 +21,7 @@ TBA
 4. Install [Nix: the package manager](https://nixos.org/download#nix-install-macos) and restart the shell
 5. Enable flakes support by creating `~/.config/nix/nix.conf` with the following contents: `experimental-features = nix-command flakes`
 <pre>
+mkdir -p ~/.config/nix
 echo experimental-features = nix-command flakes > ~/.config/nix/nix.conf
 </pre>
 
