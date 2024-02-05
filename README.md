@@ -72,6 +72,12 @@ Install **rust-analyzer**:
 rustup component add rust-analyzer
 </pre>
 
+## Updating Packages
+Update packages by running the following command:
+<pre>
+make update
+</pre>
+
 ## Garbage Collection
 Occasionally, Nix store grows quite large because of orphaned packages. Use
 <pre>
