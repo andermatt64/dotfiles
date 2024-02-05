@@ -24,7 +24,9 @@ TBA
 
 ## Installation
 1. Checkout [dotfiles](https://github.com/andermatt64/dotfiles) repository: `git clone https://github.com/andermatt64/dotfiles`
-2. In the repository root directory, run `make all`. This should verify all the prerequisites are in place and run `nix run path:$(pwd) -- switch --flake path:$(pwd)`. 
+2. In a terminal, change the current directory into the repository root, `dotfiles`
+3. On a MacOS machine, run `make casks` to install Homebrew casks.
+4. Run `make` -- this should verify all the prerequisites are in place and run `nix run path:$(pwd) -- switch --flake path:$(pwd)`. 
 
 ## Post Install
 ### MacOS
