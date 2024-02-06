@@ -1,0 +1,56 @@
+#!/usr/bin/env python3
+
+import argparse
+import os
+import platform
+import sys
+
+from typing import TextIO
+
+def platform_to_system() -> str:
+    os_type = platform.system().lower()
+    arch = platform.machine().replace("arm64", "aarch64").lower()
+    return f"{arch}-{os_type}"  
+    
+def stamp_values(fd: TextIO) -> str:
+    user = os.getenv("USER") or ""
+    homedir = os.getenv("HOME") or ""
+    system = platform_to_system()
+
+    if len(user) == 0:
+        raise Exception("No USER environment variable defined")
+    if len(homedir) == 0:
+        raise Exception("No HOME environment variable defined")
+    if len(system) == 0:
+        raise Exception(f"Unsupported platform: machine={platform.machine()} system={platform.system()}")
+    
+    return (
+        fd.read()
+            .replace("${{TPL:user}}", user)
+            .replace("${{TPL:home}}", homedir)
+            .replace("${{TPL:system}}", system)
+    )
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        prog="generate_flake",
+        description="Generates nix flake from a flake tempate file",
+    )
+    parser.add_argument("-o", "--output", type=argparse.FileType("w"))
+    parser.add_argument("template_file", type=argparse.FileType("r"))
+
+    args = parser.parse_args()
+
+    try:
+        out = stamp_values(args.template_file)
+        args.output.write(out)
+        args.output.flush()
+
+        print(f"Wrote {args.template_file.name} to {args.output.name}")
+    except Exception as exc:
+        sys.stderr.write(f"Failed to write to {args.output.name}\n")
+        sys.exit(1)
+    finally:
+        args.template_file.close()
+
+    sys.exit(0)

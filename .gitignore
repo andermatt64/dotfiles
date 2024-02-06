@@ -1,3 +1,5 @@
 .DS_Store
-generated/
-local/
+flake.nix
+flake.lock
+home.nix
+result/

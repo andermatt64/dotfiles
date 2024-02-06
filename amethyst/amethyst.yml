@@ -1,0 +1,257 @@
+ignore-menu-bar: false
+new-windows-to-main: false
+follow-space-thrown-windows: true
+
+window-max-count: 0
+window-minimum-width: 0
+window-minimum-height: 0
+
+window-margins: true
+window-margin-size: 2
+smart-window-margins: false
+
+screen-padding-left: 0
+screen-padding-top: 0
+screen-padding-right: 0
+screen-padding-bottom: 0
+disable-padding-on-builtin-display: false
+
+enables-layout-hud: true
+enables-layout-hud-on-space-change: true
+
+restore-layouts-on-launch: true
+window-resize-step: 5
+
+layouts:
+  - tall
+  - widescreen-tall
+  - column
+  - middle-wide
+  - 3column-left
+  - fullscreen
+
+mod1:
+  - option
+
+mod2:
+  - option
+  - shift
+
+cycle-layout:
+  mod: mod1
+  key: '.'
+
+cycle-layout-backward:
+  mod: mod1
+  key: ','
+
+shrink-main:
+  mod: mod2
+  key: h
+
+expand-main:
+  mod: mod2
+  key: l
+
+increase-main:
+  mod: mod2
+  key: '.'
+
+decrease-main:
+  mod: mod2
+  key: ','
+
+command1:
+  mod: null
+  key: null
+
+command2:
+  mod: null
+  key: null
+
+command3:
+  mod: null
+  key: null
+  
+command4:
+  mod: null
+  key: null
+
+focus-ccw:
+  mod: mod1
+  key: j
+
+focus-cw:
+  mod: mod1
+  key: k
+
+focus-main:
+  mod: null
+  key: null
+
+focus-screen-ccw:
+  mod: null
+  key: null
+
+focus-screen-cw:
+  mod: null
+  key: null
+
+swap-screen-ccw:
+  mod: null
+  key: null
+
+swap-screen-cw:
+  mod: null
+  key: null
+
+swap-ccw:
+  mod: mod2
+  key: j
+
+swap-cw:
+  mod: mod2
+  key: k
+
+swap-main:
+  mod: null
+  key: null
+
+reevaluate-windows:
+  mod: mod2
+  key: z
+
+throw-space-left:
+  mod: mod2
+  key: left
+
+throw-space-right:
+  mod: mod2
+  key: right
+
+throw-space-1:
+  mod: mod2
+  key: 1
+
+throw-space-2:
+  mod: mod2
+  key: 2
+
+throw-space-3:
+  mod: mod2
+  key: 3
+
+throw-space-4:
+  mod: mod2
+  key: 4
+
+throw-space-5:
+  mod: mod2
+  key: 5
+
+throw-space-6:
+  mod: mod2
+  key: 6
+
+throw-space-7:
+  mod: mod2
+  key: 7
+
+throw-space-8:
+  mod: mod2
+  key: 8
+  
+throw-space-9:
+  mod: mod2
+  key: 9
+
+throw-screen-1: 
+  mod: null
+  key: null
+
+throw-screen-2: 
+  mod: null
+  key: null
+  
+throw-screen-3: 
+  mod: null
+  key: null
+  
+throw-screen-4: 
+  mod: null
+  key: null
+
+focus-screen-1:
+  mod: null
+  key: null
+
+focus-screen-2:
+  mod: null
+  key: null
+
+focus-screen-3:
+  mod: null
+  key: null
+
+focus-screen-4:
+  mod: null
+  key: null
+
+toggle-float:
+  mod: mod2
+  key: space
+
+display-current-layout:
+  mod: mod1
+  key: '/'
+
+toggle-focus-follows-mouse:
+  mod: null
+  key: null
+
+toggle-tiling:
+  mod: null
+  key: null
+
+select-tall-layout:
+  mod: null
+  key: null
+
+select-wide-layout:
+  mod: null
+  key: null
+
+select-fullscreen-layout:
+  mod: mod2
+  key: f
+
+select-column-layout:
+  mod: null
+  key: null
+
+relaunch-amethyst:
+  mod: mod2
+  key: r
+  
+mouse-follows-focus: false
+focus-follows-mouse: false
+mouse-swaps-windows: false
+mouse-resizes-windows: false
+
+float-small-windows: true
+floating-is-blacklist: false
+floating:
+  - com.github.wez.wezterm
+  - com.apple.iWork.Keynote
+  - com.apple.iWork.Numbers
+  - com.apple.iWork.Pages
+  - com.apple.dt.Xcode
+  - com.apple.Notes
+  - org.mozilla.firefox
+  - com.apple.Safari
+  - com.google.Chrome
+  - org.godotengine.godot
+  - com.pixelmatorteam.pixelmator.x
+
+debug-layout-info: false
+use-canary-build: false
