@@ -8,7 +8,7 @@ window-minimum-height: 0
 
 window-margins: true
 window-margin-size: 2
-smart-window-margins: true
+smart-window-margins: false
 
 screen-padding-left: 0
 screen-padding-top: 0
@@ -222,8 +222,8 @@ select-wide-layout:
   key: null
 
 select-fullscreen-layout:
-  mod: null
-  key: null
+  mod: mod2
+  key: f
 
 select-column-layout:
   mod: null

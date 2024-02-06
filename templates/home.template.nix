@@ -19,6 +19,8 @@
     pkgs.tokei
     pkgs.ripsecrets
     pkgs.xz
+    pkgs.marksman
+    pkgs.taplo
     pkgs.nerdfonts
     pkgs.b612
   ];
