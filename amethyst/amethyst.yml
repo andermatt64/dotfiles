@@ -37,6 +37,8 @@ mod2:
   - option
   - shift
 
+# mod3 is unused and is a makeshift "no shortcut recorded" since null doesn't work reliably
+
 cycle-layout:
   mod: mod1
   key: '.'
@@ -86,24 +88,24 @@ focus-cw:
   key: k
 
 focus-main:
-  mod: null
-  key: null
+  mod: mod3
+  key: m
 
 focus-screen-ccw:
-  mod: null
-  key: null
+  mod: mod3
+  key: p
 
 focus-screen-cw:
-  mod: null
-  key: null
+  mod: mod3
+  key: n
 
 swap-screen-ccw:
-  mod: null
-  key: null
+  mod: mod3
+  key: h
 
 swap-screen-cw:
-  mod: null
-  key: null
+  mod: mod3
+  key: l
 
 swap-ccw:
   mod: mod2
@@ -114,8 +116,8 @@ swap-cw:
   key: k
 
 swap-main:
-  mod: null
-  key: null
+  mod: mod3
+  key: enter
 
 reevaluate-windows:
   mod: mod2
@@ -166,36 +168,36 @@ throw-space-9:
   key: 9
 
 throw-screen-1: 
-  mod: null
-  key: null
+  mod: mod3
+  key: w
 
 throw-screen-2: 
-  mod: null
-  key: null
+  mod: mod3
+  key: e
   
 throw-screen-3: 
-  mod: null
-  key: null
+  mod: mod3
+  key: r
   
 throw-screen-4: 
-  mod: null
-  key: null
+  mod: mod3
+  key: q
 
 focus-screen-1:
-  mod: null
-  key: null
+  mod: mod3
+  key: w
 
 focus-screen-2:
-  mod: null
-  key: null
+  mod: mod3
+  key: e
 
 focus-screen-3:
-  mod: null
-  key: null
+  mod: mod3
+  key: r
 
 focus-screen-4:
-  mod: null
-  key: null
+  mod: mod3
+  key: q
 
 toggle-float:
   mod: mod2
@@ -206,28 +208,28 @@ display-current-layout:
   key: '/'
 
 toggle-focus-follows-mouse:
-  mod: null
-  key: null
+  mod: mod3
+  key: x
 
 toggle-tiling:
-  mod: null
-  key: null
+  mod: mod3
+  key: t
 
 select-tall-layout:
-  mod: null
-  key: null
+  mod: mod3
+  key: a
 
 select-wide-layout:
-  mod: null
-  key: null
+  mod: mod3
+  key: s
 
 select-fullscreen-layout:
   mod: mod2
   key: f
 
 select-column-layout:
-  mod: null
-  key: null
+  mod: mod3
+  key: f
 
 relaunch-amethyst:
   mod: mod2
