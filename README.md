@@ -15,7 +15,7 @@ TBA
  
 ## Prerequisites
 ### MacOS
-1. Set a hostname for the machine
+1. Set a hostname for the machine using _System Settings_ and `scutil`: `sudo scutil --set HostName &lt;HOSTNAME&gt;`
 2. Enable *FileVault* and reboot the machine
 3. Install [Homebrew](https://brew.sh)
 4. Install [Nix: the package manager](https://nixos.org/download#nix-install-macos) and restart the shell
