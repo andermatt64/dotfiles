@@ -14,6 +14,7 @@
     pkgs.xq-xml
     pkgs.hexyl
     pkgs.sox
+    pkgs.nil
     pkgs.pastel
     pkgs.mdcat
     pkgs.tokei
