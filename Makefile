@@ -2,6 +2,7 @@ HOMEBREW_BIN := brew
 NIX_BIN := nix
 NIXENV_BIN := nix-env
 NIXSTORE_BIN := nix-store
+NIXGC_BIN := nix-collect-garbage
 
 NIX_HOME_CONFIG := $(HOME)/.config/nix/nix.conf
 NIX_GLOBAL_CONFIG := /etc/nix/nix.conf
@@ -32,6 +33,7 @@ gc:
 	$(info Running nix garbage collection on old generations...)
 	@${NIXENV_BIN} --delete-generations old
 	@${NIXSTORE_BIN} --gc
+	@${NIXGC_BIN} -d
 
 update:
 	$(info Updating dotfiles flake...)
