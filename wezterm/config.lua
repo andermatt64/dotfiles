@@ -33,6 +33,7 @@ function main()
       line_height = 1,
       freetype_load_target = "HorizontalLcd",
       freetype_load_flags = "DEFAULT",
+      default_prog = { "fish" },
       keys = {},
     },
     darwin = {
@@ -40,6 +41,7 @@ function main()
       line_height = 1,
       freetype_load_target = "HorizontalLcd",
       freetype_load_flags = "DEFAULT",
+      default_prog = { wezterm.home_dir .. "/.nix-profile/bin/fish" },
       keys = {
         { key = "c", mods = "SUPER", action = act.CopyTo "Clipboard" },
         { key = "v", mods = "SUPER", action = act.PasteFrom "Clipboard" },
@@ -118,6 +120,7 @@ function main()
     
     disable_default_key_bindings = true,
 
+    default_prog = platform_options.default_prog,
     keys = global_keys,
 
     window_close_confirmation = "NeverPrompt",

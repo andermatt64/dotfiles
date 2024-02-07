@@ -198,6 +198,18 @@
 
     settings = {
       theme = "catppuccin-macchiato";
+      default_shell = "fish";
+      pane_frames = false;
+      keybinds = {
+        pane = {
+          bind = {
+            _args = [ "b" ];
+            Clear = {
+              
+            };
+          };
+        };
+      };
     };
   };
   programs.zoxide = {
