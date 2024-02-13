@@ -12,6 +12,8 @@
   home.packages = [
     pkgs.rustup
     pkgs.xq-xml
+    pkgs.difftastic
+    pkgs.dust
     pkgs.hexyl
     pkgs.sox
     pkgs.nil
