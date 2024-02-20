@@ -1,5 +1,5 @@
 # dotfiles (February 2024)
-Modern dotfiles configuration that documents and sets up my optimal development setup for MacOS and Linux.
+Modern dotfiles configuration that documents and sets up my optimal development setup for MacOS and Linux (with specific focus on immutable distros such as Fedora Atomic series and SteamOS).
 
 ## Overview
 The main rationale behind moving to a Nix-based approach:
@@ -8,14 +8,17 @@ The main rationale behind moving to a Nix-based approach:
 * **Easier customization:** Popular tools are automatically set up close to our preferences.
 * **Development shells:** No need to pollute global packages, setup tailored development "containers"
 
-Nix will be used to automate the installation and configuration of command-line tools. UI-extensive applications such as terminal emulators, browsers, etc. will be installed via either Homebrew Casks (MacOS), Flatpak (Linux), or Snaps (Ubuntu).
- 
+Nix will be used to automate the installation and configuration of command-line tools. UI-extensive applications such as terminal emulators, browsers, etc. will be installed via either Homebrew Casks (MacOS), Flatpak (Fedora et al), or Snaps (Ubuntu).
+
 ## Prerequisites
 ### MacOS
 1. Set a hostname for the machine using _System Settings_ and via the following command: `sudo scutil --set HostName <HOSTNAME>`
 2. Enable *FileVault* and reboot the machine
 3. Install [Homebrew](https://brew.sh)
 4. For Nix installer, we recommend using the [Determinate Systems Nix installer](https://determinate.systems/posts/determinate-nix-installer) with default Nix flakes support and a MacOS updates survival mode. For instructions on using the official Nix installer, see [Appendix A](#appendix-a-official-nix-installer)
+
+### Linux
+TBA
 
 #### Appendix A: Official Nix Installer
 1. Install [Nix: the package manager](https://nixos.org/download#nix-install-macos) and restart the shell
@@ -24,9 +27,6 @@ Nix will be used to automate the installation and configuration of command-line 
 mkdir -p ~/.config/nix
 echo experimental-features = nix-command flakes > ~/.config/nix/nix.conf
 </pre>
-
-### Linux
-Support for immutable distros TBA
 
 ## Installation
 1. Checkout [dotfiles](https://github.com/andermatt64/dotfiles) repository: `git clone https://github.com/andermatt64/dotfiles`
@@ -101,3 +101,10 @@ fi
 </pre>
 
 Make sure `/etc/synthetic.conf` contains the content: `nix`
+
+## Issues
+* Single-user installation mode has not been tested and may not be supported. A different script may be required to run on startup for single-user mode.
+* Certain distros (such as SteamOS) does not provide `gnumake` by default, making the initial install painful. Consider writing a script that creates a Nix environment with `gnumake` to run the initial configuration.
+* Amethyst YAML configuration is installed for all platforms. It should only be created for MacOS.
+* Wezterm Flatpak needs additional permissions to read from `~/.nix-profile` in order to access the Nix Home Manager placed `wezterm.lua` configuration script. Flatseal application needs to be used to add permissions.
+* Wezterm Flatpak does not properly recognize Nix Home Managed installed user fonts directories as user font directories. To mitigate, either create a symlink to point `~/.fonts` to the location Nix drops user fonts or consider only installing fonts for MacOS and require manual font installation on Linux.
