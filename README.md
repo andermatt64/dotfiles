@@ -18,7 +18,8 @@ Nix will be used to automate the installation and configuration of command-line 
 4. For Nix installer, we recommend using the [Determinate Systems Nix installer](https://determinate.systems/posts/determinate-nix-installer) with default Nix flakes support and a MacOS updates survival mode. For instructions on using the official Nix installer, see [Appendix A](#appendix-a-official-nix-installer)
 
 ### Linux
-TBA
+1. Install [Nerd Fonts](https://www.nerdfonts.com/font-downloads) -- at the minimum, **JetBrainsMono Nerd Font**
+2. Install [B612 Font](https://fonts.google.com/specimen/B612) and [Questrial](https://fonts.google.com/specimen/Questrial)
 
 #### Appendix A: Official Nix Installer
 1. Install [Nix: the package manager](https://nixos.org/download#nix-install-macos) and restart the shell
@@ -107,4 +108,3 @@ Make sure `/etc/synthetic.conf` contains the content: `nix`
 * Certain distros (such as SteamOS) does not provide `gnumake` by default, making the initial install painful. Consider writing a script that creates a Nix environment with `gnumake` to run the initial configuration.
 * Amethyst YAML configuration is installed for all platforms. It should only be created for MacOS.
 * Wezterm Flatpak needs additional permissions to read from `~/.nix-profile` in order to access the Nix Home Manager placed `wezterm.lua` configuration script. Flatseal application needs to be used to add permissions.
-* Wezterm Flatpak does not properly recognize Nix Home Managed installed user fonts directories as user font directories. To mitigate, either create a symlink to point `~/.fonts` to the location Nix drops user fonts or consider only installing fonts for MacOS and require manual font installation on Linux.

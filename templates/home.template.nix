@@ -1,14 +1,30 @@
-{system, pkgs, ...}: {
+{pkgs, ...}: 
+  let
+    platform = "${{TPL:system}}";
+    darwinCfg = if platform == "aarch64-darwin" || platform == "x86_64-darwin" then {
+      files = {
+        ".amethyst.yml".source = ./amethyst/amethyst.yml;
+      };
+      packages = [
+        pkgs.nerdfonts
+        pkgs.b612
+      ];
+    } else {
+      files = {};
+      packages = [];
+    };
+  in
+  {
   home.username = "${{TPL:user}}";
   home.homeDirectory = "${{TPL:home}}";
 
   home.stateVersion = "23.11";
+  home.sessionVariables = {};
 
   home.file = {
     ".config/wezterm/wezterm.lua".source = ./wezterm/config.lua;
-    ".amethyst.yml".source = ./amethyst/amethyst.yml;
-  };
-  home.sessionVariables = {};
+  } // darwinCfg.files;
+
   home.packages = [
     pkgs.rustup
     pkgs.xq-xml
@@ -24,10 +40,8 @@
     pkgs.xz
     pkgs.marksman
     pkgs.taplo
-    pkgs.nerdfonts
-    pkgs.b612
-  ];
-  
+  ] ++ darwinCfg.packages;
+ 
   programs.home-manager.enable = true;
   programs.direnv = {
     enable = true;
