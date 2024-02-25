@@ -1,4 +1,4 @@
-# dotfiles (February 2024)
+# dotfiles (March 2024)
 Modern dotfiles configuration that documents and sets up my optimal development setup for MacOS and Linux (with specific focus on immutable distros such as Fedora Atomic series and SteamOS).
 
 ## Overview
@@ -20,6 +20,12 @@ Nix will be used to automate the installation and configuration of command-line 
 ### Linux
 1. Install [Nerd Fonts](https://www.nerdfonts.com/font-downloads) -- at the minimum, **JetBrainsMono Nerd Font**
 2. Install [B612 Font](https://fonts.google.com/specimen/B612) and [Questrial](https://fonts.google.com/specimen/Questrial)
+3. Make sure Flatpak is installed and Flathub is added as a repository. Follow instructions [here](https://flathub.org/setup) for setting up Flathub with Flatpak.
+4. Install the following Flatpak packages either through UI or via Flatpak command line interface:
+    * `com.github.tchx84.Flatseal`
+    * `org.wezfurlong.wezterm`
+    * `org.mozilla.firefox`
+5. For platforms without `make` installed, run `nix-shell -p gnumake` to enter a Nix shell with `gnumake` installed.
 
 #### Appendix A: Official Nix Installer
 1. Install [Nix: the package manager](https://nixos.org/download#nix-install-macos) and restart the shell
@@ -36,7 +42,7 @@ echo experimental-features = nix-command flakes > ~/.config/nix/nix.conf
 
 ## Post Install
 ### MacOS
-> **Note:** We do not add `fish` to `/etc/shells` nor set it as the default shell for the main user anymore. This is so that we have an emergency shell to quickly fall back on in the event that a MacOS update breaks Nix store. 
+> **Note:** We do not add `nu` to `/etc/shells` nor set it as the default shell for the main user anymore. This is so that we have an emergency shell to quickly fall back on in the event that a MacOS update breaks Nix store. 
 
 1. Start a new shell and run `make casks` to install Homebrew Casks.
 2. Consider manually installing [Questrial font](https://fonts.google.com/specimen/Questrial)
@@ -63,7 +69,7 @@ echo experimental-features = nix-command flakes > ~/.config/nix/nix.conf
     * **Select Column layout**
 
 ### Linux
-TBA
+1. Wezterm Flatpak requires additional permissions in order to read `wezterm.lua`. To fix, open Flatseal and make sure Wezterm has the ability to read from `~/.nix-profile`.
 
 ### Rust Toolchain Installation
 Install and set the default toolchain to be **stable**:
@@ -104,7 +110,4 @@ fi
 Make sure `/etc/synthetic.conf` contains the content: `nix`
 
 ## Issues
-* Single-user installation mode has not been tested and may not be supported. A different script may be required to run on startup for single-user mode.
-* Certain distros (such as SteamOS) does not provide `gnumake` by default, making the initial install painful. Consider writing a script that creates a Nix environment with `gnumake` to run the initial configuration.
-* Amethyst YAML configuration is installed for all platforms. It should only be created for MacOS.
-* Wezterm Flatpak needs additional permissions to read from `~/.nix-profile` in order to access the Nix Home Manager placed `wezterm.lua` configuration script. Flatseal application needs to be used to add permissions.
+* Single-user installation mode has not been tested and may not be supported. A different script may be required to run at startup for single-user mode.
