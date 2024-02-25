@@ -23,6 +23,7 @@
 
   home.file = {
     ".config/wezterm/wezterm.lua".source = ./wezterm/config.lua;
+    ".config/starship.toml".source = ./starship/config.toml;
   } // darwinCfg.files;
 
   home.packages = [
@@ -243,13 +244,6 @@
       open = "^open";
     };
   };
-  programs.starship = {
-    enable = true;
-
-    settings = {
-      battery.disabled = true;
-    };
-  };
   programs.btop = {
     enable = true;
 
@@ -300,6 +294,7 @@
     icons = true;
     enableAliases = true;
   };
+  programs.starship.enable = true;
   programs.zoxide.enable = true;
   programs.jq.enable = true;
   programs.ripgrep.enable = true;
