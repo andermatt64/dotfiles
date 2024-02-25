@@ -44,12 +44,12 @@ show_gen:
 	@nix-env --list-generations
 	
 macos_deps_check:
-ifeq ("$(shell which brew)", "")
+ifeq ("$(shell which brew 2>/dev/null)", "")
 	$(error Homebrew is not installed. Please install Homebrew by following instructions here: https://brew.sh)
 endif
 
 deps_check:
-ifeq ("$(shell which nix)", "")
+ifeq ("$(shell which nix 2>/dev/null)", "")
 	$(error Nix is not installed. Please install Nix for MacOS by following instructions here: https://nixos.org/download#nix-install-macos)
 endif
 ifeq ("$(shell grep "^experimental-features = nix-command flakes" $(shell test -e ${NIX_HOME_CONFIG} && echo ${NIX_HOME_CONFIG}) $(shell test -e ${NIX_GLOBAL_CONFIG} && echo ${NIX_GLOBAL_CONFIG}) /dev/null 2>/dev/null)", "")

@@ -1,7 +1,14 @@
 {lib, pkgs, ...}: 
   let
     platform = "${{TPL:system}}";
-    darwinCfg = if platform == "aarch64-darwin" || platform == "x86_64-darwin" then {
+    osName = {
+      "aarch64-darwin" = "darwin";
+      "x86_64-darwin" = "darwin";
+      "aarch64-linux" = "linux";
+      "x86_64-linux" = "linux";
+    }."${platform}";
+
+    darwinCfg = {
       files = {
         ".amethyst.yml".source = ./amethyst/amethyst.yml;
       };
@@ -9,9 +16,12 @@
         pkgs.nerdfonts
         pkgs.b612
       ];
-    } else {
+    };
+    linuxCfg = {
       files = {};
-      packages = [];
+      packages = [
+        pkgs.gnumake
+      ];
     };
   in
   {
@@ -24,7 +34,12 @@
   home.file = {
     ".config/wezterm/wezterm.lua".source = ./wezterm/config.lua;
     ".config/starship.toml".source = ./starship/config.toml;
-  } // darwinCfg.files;
+  } 
+    // (
+      if osName == "darwin" then darwinCfg.files 
+      else if osName == "linux" then linuxCfg.files
+      else {}
+    );
 
   home.packages = [
     pkgs.rustup
@@ -41,7 +56,12 @@
     pkgs.xz
     pkgs.marksman
     pkgs.taplo
-  ] ++ darwinCfg.packages;
+  ] 
+    ++ (
+      if osName == "darwin" then darwinCfg.packages
+      else if osName == "linux" then linuxCfg.packages
+      else []
+    );
  
   programs.home-manager.enable = true;
   programs.direnv = {

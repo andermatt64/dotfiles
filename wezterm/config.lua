@@ -33,7 +33,7 @@ function main()
       line_height = 1,
       freetype_load_target = "HorizontalLcd",
       freetype_load_flags = "DEFAULT",
-      default_prog = { "nu" },
+      default_prog = { wezterm.home_dir .. "/.nix-profile/bin/nu" },
       keys = {},
     },
     darwin = {

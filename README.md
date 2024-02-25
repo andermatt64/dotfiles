@@ -69,7 +69,7 @@ echo experimental-features = nix-command flakes > ~/.config/nix/nix.conf
     * **Select Column layout**
 
 ### Linux
-1. Wezterm Flatpak requires additional permissions in order to read `wezterm.lua`. To fix, open Flatseal and make sure Wezterm has the ability to read from `~/.nix-profile`.
+1. Wezterm Flatpak requires additional permissions in order to read `wezterm.lua`. To fix, open Flatseal and make sure Wezterm has the ability to read from `/nix/store` and `~/.nix-profile`.
 
 ### Rust Toolchain Installation
 Install and set the default toolchain to be **stable**:
