@@ -38,6 +38,10 @@ gc:
 update:
 	$(info Updating dotfiles flake...)
 	@${NIX_BIN} flake update --flake path:$(shell pwd)
+
+show_gen:
+	$(info Stored generations)
+	@nix-env --list-generations
 	
 macos_deps_check:
 ifeq ("$(shell which brew)", "")
@@ -52,7 +56,7 @@ ifeq ("$(shell grep "^experimental-features = nix-command flakes" $(shell test -
 	$(error Nix experimental flakes not enabled. Please enable flakes by following instructions here: https://nixos.wiki/wiki/Flakes)
 endif
 
-.PHONY: all build casks clean deps_check gc macos_deps_check update
+.PHONY: all build casks clean deps_check gc macos_deps_check update show_gen
 
 %.nix: ${FLAKE_TEMPLATE_DIR}/%.template.nix
 	$(info Generating $@ from $<)
