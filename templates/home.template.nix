@@ -34,6 +34,14 @@
   home.file = {
     ".config/wezterm/wezterm.lua".source = ./wezterm/config.lua;
     ".config/starship.toml".source = ./starship/config.toml;
+
+    # TODO: when carapace improves quoting of file paths with spaces, remove these
+    ".config/nushell/cargo-completions.nu".source = ./nushell/cargo-completions.nu;
+    ".config/nushell/git-completions.nu".source = ./nushell/git-completions.nu;
+    ".config/nushell/make-completions.nu".source = ./nushell/make-completion.nu;
+    ".config/nushell/nix-completions.nu".source = ./nushell/nix-completions.nu;
+    ".config/nushell/yarn-v4-completions.nu".source = ./nushell/yarn-v4-completions.nu;
+    ".config/nushell/zellij-completions.nu".source = ./nushell/zellij-completions.nu;
   } 
     // (
       if osName == "darwin" then darwinCfg.files 
@@ -257,10 +265,22 @@
       if ('/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' | path exists) {
         fenv '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' | load-env;
       }
+
+      # TODO: remove when carapace is better with paths with spaces  
+      source ~/.config/nushell/cargo-completions.nu
+      source ~/.config/nushell/git-completions.nu
+      source ~/.config/nushell/make-completions.nu
+      source ~/.config/nushell/nix-completions.nu
+      source ~/.config/nushell/yarn-v4-completions.nu
+      source ~/.config/nushell/zellij-completions.nu
     '';
 
     shellAliases = {
       cat = "bat";
+      la = "eza -a";
+      ll = "eza -l";
+      lla = "eza -la";
+      lt = "eza --tree";
       open = "^open";
     };
   };
@@ -312,7 +332,6 @@
     enable = true;
     git = true;
     icons = true;
-    enableAliases = true;
   };
   programs.starship.enable = true;
   programs.zoxide.enable = true;
