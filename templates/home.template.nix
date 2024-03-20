@@ -230,7 +230,7 @@
           let key = ($row | get column1 | first);
           mut val = ($row | get column2 | first);
 
-          if $key in [_ SHLVL PWD PROMPT_MULTILINE_INDICATOR PROMPT_INDICATOR DIRS_POSITION LAST_EXIT_CODE DIRENV_DIFF DIRENV_WATCHES SHELL NIX_CLAGS_COMPILE] {
+          if $key in [_ SHLVL PWD PROMPT_MULTILINE_INDICATOR PROMPT_INDICATOR DIRS_POSITION LAST_EXIT_CODE DIRENV_DIFF DIRENV_WATCHES SHELL NIX_CFLAGS_COMPILE] {
             continue;
           }
 
