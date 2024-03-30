@@ -61,7 +61,6 @@
     pkgs.mdcat
     pkgs.tokei
     pkgs.ripsecrets
-    pkgs.xz
     pkgs.marksman
     pkgs.taplo
   ] 
