@@ -239,7 +239,7 @@
 
     settings = {
       theme = "catppuccin-macchiato";
-      default_shell = "nu";
+      default_shell = "fish";
       pane_frames = false;
       keybinds = {
         pane = {
