@@ -50,7 +50,6 @@
     pkgs.sox
     pkgs.nil
     pkgs.pastel
-    pkgs.procs
     pkgs.mdcat
     pkgs.tokei
     pkgs.ripsecrets
@@ -177,16 +176,6 @@
       ];
     };
   };
-  programs.fd = {
-    enable = true;
-
-    hidden = false;
-    ignores = [
-      ".git/"
-      "node_modules/"
-      "venv/"
-    ];
-  };
   programs.fish = {
     enable = true;
 
@@ -233,7 +222,11 @@
       color_theme = "onedark";
     };
   };
-  programs.skim.enable = true;
+  programs.skim = {
+    enable = true;
+
+    enableFishIntegration = false;
+  };
   programs.zellij = {
     enable = true;
 
