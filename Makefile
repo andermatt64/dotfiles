@@ -43,15 +43,6 @@ show_gen:
 	$(info Stored generations)
 	@nix-env --list-generations
 
-update_completions:
-	$(info Grabbing latest custom nushell command completions...)
-	@curl -o nushell/cargo-completions.nu https://raw.githubusercontent.com/nushell/nu_scripts/main/custom-completions/cargo/cargo-completions.nu 2>/dev/null
-	@curl -o nushell/git-completions.nu https://raw.githubusercontent.com/nushell/nu_scripts/main/custom-completions/git/git-completions.nu 2>/dev/null
-	@curl -o nushell/make-completion.nu https://raw.githubusercontent.com/nushell/nu_scripts/main/custom-completions/make/make-completions.nu 2>/dev/null
-	@curl -o nushell/nix-completions.nu https://raw.githubusercontent.com/nushell/nu_scripts/main/custom-completions/nix/nix-completions.nu 2>/dev/null
-	@curl -o nushell/yarn-v4-completions.nu https://raw.githubusercontent.com/nushell/nu_scripts/main/custom-completions/yarn/yarn-v4-completions.nu 2>/dev/null
-	@curl -o nushell/zellij-completions.nu https://raw.githubusercontent.com/nushell/nu_scripts/main/custom-completions/zellij/zellij-completions.nu 2>/dev/null
-	
 macos_deps_check:
 ifeq ("$(shell which brew 2>/dev/null)", "")
 	$(error Homebrew is not installed. Please install Homebrew by following instructions here: https://brew.sh)
@@ -65,7 +56,7 @@ ifeq ("$(shell grep "^experimental-features = nix-command flakes" $(shell test -
 	$(error Nix experimental flakes not enabled. Please enable flakes by following instructions here: https://nixos.wiki/wiki/Flakes)
 endif
 
-.PHONY: all build casks clean deps_check gc macos_deps_check update show_gen update_completions
+.PHONY: all build casks clean deps_check gc macos_deps_check update show_gen
 
 %.nix: ${FLAKE_TEMPLATE_DIR}/%.template.nix
 	$(info Generating $@ from $<)
