@@ -42,7 +42,7 @@ echo experimental-features = nix-command flakes > ~/.config/nix/nix.conf
 
 ## Post Install
 ### MacOS
-> **Note:** We do not add `nu` to `/etc/shells` nor set it as the default shell for the main user anymore. This is so that we have an emergency shell to quickly fall back on in the event that a MacOS update breaks Nix store. 
+> **Note:** We do not add `fish` to `/etc/shells` nor set it as the default shell for the main user anymore. This is so that we have an emergency shell to quickly fall back on in the event that a MacOS update breaks Nix store. 
 
 1. Start a new shell and run `make casks` to install Homebrew Casks.
 2. Consider manually installing [Questrial font](https://fonts.google.com/specimen/Questrial)
@@ -87,13 +87,6 @@ Update packages by running the following command:
 <pre>
 make update
 </pre>
-
-## Updating Completions
-For now, we are using custom `nushell` completions because of an issue with `carapace` and quoting paths starting with `~` and containing spaces. To update completion definitions, use
-<pre>
-make update_completions
-</pre>
-> **Note:** Zellij completions contain custom definitions for `delete-all-sessions` and `delete-session`. Make sure those chances are not lost on update.
 
 ## Garbage Collection
 Occasionally, Nix store grows quite large because of orphaned packages. Use
