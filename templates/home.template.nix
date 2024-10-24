@@ -267,7 +267,7 @@
   programs.eza = {
     enable = true;
     git = true;
-    icons = true;
+    icons = "auto";
   };
   programs.starship.enable = true;
   programs.zoxide.enable = true;
