@@ -13,7 +13,8 @@
         ".amethyst.yml".source = ./amethyst/amethyst.yml;
       };
       packages = [
-        pkgs.nerdfonts
+        pkgs.nerd-fonts.jetbrains-mono
+        pkgs.nerd-fonts.fira-code
         pkgs.b612
       ];
     };
