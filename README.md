@@ -71,6 +71,20 @@ echo experimental-features = nix-command flakes > ~/.config/nix/nix.conf
 ### Linux
 1. Wezterm Flatpak requires additional permissions in order to read `wezterm.lua`. To fix, open Flatseal and make sure Wezterm has the ability to read from `/nix/store` and `~/.nix-profile`.
 
+## Appendix
+### Helix Editor Configurations
+This setup uses different language configurations from default Helix Editor. Below is a list of the different configurations and what language server (LSP) and formatters are required.
+
+| Language | LSP | Formatter |
+| --- | --- | --- |
+| Python | [basedpyright](https://github.com/DetachHead/basedpyright) | [ruff](https://github.com/astral-sh/ruff) |
+| HTML | Default | [prettier](https://prettier.io/) |
+| JSON | Default | [prettier](https://prettier.io/) |
+| CSS | Default | [prettier](https://prettier.io/) |
+| JavaScript | Default | [prettier](https://prettier.io/) |
+| TypeScript | Default | [prettier](https://prettier.io/) |
+| TSX | Default | [prettier](https://prettier.io/) |
+
 ### Rust Toolchain Installation
 Install and set the default toolchain to be **stable**:
 <pre>
@@ -82,20 +96,20 @@ Install **rust-analyzer**:
 rustup component add rust-analyzer
 </pre>
 
-## Updating Packages
+### Updating Nix Packages
 Update packages by running the following command:
 <pre>
 make update
 </pre>
 
-## Garbage Collection
+### Nix Garbage Collection
 Occasionally, Nix store grows quite large because of orphaned packages. Use
 <pre>
 make gc
 </pre>
 to clean up.
 
-## MacOS Update Recovery
+### MacOS Update Recovery
 In the event a MacOS update breaks Nix store, the following steps should alleviate most issues:
 
 Make sure `/etc/zshrc` ends with the following stanza:
@@ -109,5 +123,5 @@ fi
 
 Make sure `/etc/synthetic.conf` contains the content: `nix`
 
-## Issues
+## Known Issues
 * Single-user installation mode has not been tested and may not be supported. A different script may be required to run at startup for single-user mode.

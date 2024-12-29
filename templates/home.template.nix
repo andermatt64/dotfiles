@@ -86,29 +86,42 @@
       };
     };
     languages = {
-      language-server.pyright-lsp = {
-        command = "pyright-langserver";
+      language-server.basedpyright = {
+        command = "basedpyright-langserver";
         args = ["--stdio"];
-        config = ''
-          {
-            "python": {
-              "analysis": {
-                "autoSearchPaths": true,
-                "diagnosticMode": "workspace",
-                "useLibraryCodeForTypes": true
-              }
-            }
-          }
-        '';
+        config = {
+          basedpyright.analysis.diagnosticMode = "openFilesOnly";
+        };
+      };
+      language-server.ruff-lsp = {
+        command = "ruff";
+        args = [
+          "server"
+          "--preview"
+        ];
+        config = {
+          settings = {
+            lint = {
+              select = ["ALL"];
+            };
+          };
+        };
       };
       language = [
         {
           name = "python";
-          language-servers = ["pyright-lsp"];
+          language-servers = [
+            {
+              name = "ruff-lsp";
+            }
+            {
+              name = "basedpyright";
+            }
+          ];
           formatter = {
-            command = "black";
+            command = "ruff";
             args = [
-              "--quiet"    
+              "format"
               "-"
             ];
           };
