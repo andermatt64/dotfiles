@@ -243,7 +243,7 @@ mouse-resizes-windows: false
 float-small-windows: true
 floating-is-blacklist: false
 floating:
-  - com.github.wez.wezterm
+  - com.mitchellh.ghostty
   - com.apple.iWork.Keynote
   - com.apple.iWork.Numbers
   - com.apple.iWork.Pages

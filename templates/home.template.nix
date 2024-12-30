@@ -33,7 +33,7 @@
   home.sessionVariables = {};
 
   home.file = {
-    ".config/wezterm/wezterm.lua".source = ./wezterm/config.lua;
+    ".config/ghostty/config".source = ./ghostty/config;
     ".config/starship.toml".source = ./starship/config.toml;
   } 
     // (

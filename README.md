@@ -23,8 +23,8 @@ Nix will be used to automate the installation and configuration of command-line 
 3. Make sure Flatpak is installed and Flathub is added as a repository. Follow instructions [here](https://flathub.org/setup) for setting up Flathub with Flatpak.
 4. Install the following Flatpak packages either through UI or via Flatpak command line interface:
     * `com.github.tchx84.Flatseal`
-    * `org.wezfurlong.wezterm`
     * `org.mozilla.firefox`
+    * GhosTTY (pending Flakpak for now as per Jan 2025)
 5. For platforms without `make` installed, run `nix-shell -p gnumake` to enter a Nix shell with `gnumake` installed.
 
 #### Appendix A: Official Nix Installer
@@ -69,7 +69,7 @@ echo experimental-features = nix-command flakes > ~/.config/nix/nix.conf
     * **Select Column layout**
 
 ### Linux
-1. Wezterm Flatpak requires additional permissions in order to read `wezterm.lua`. To fix, open Flatseal and make sure Wezterm has the ability to read from `/nix/store` and `~/.nix-profile`.
+1. The Flatpak package for the desired terminal emulator may require additional permissions in order to read configuration files. To fix, open Flatseal and make sure the terminal emulator has the ability to read from `/nix/store` and `~/.nix-profile`.
 
 ## Appendix
 ### Helix Editor Configurations

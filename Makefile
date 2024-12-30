@@ -7,7 +7,7 @@ NIXGC_BIN := nix-collect-garbage
 NIX_HOME_CONFIG := $(HOME)/.config/nix/nix.conf
 NIX_GLOBAL_CONFIG := /etc/nix/nix.conf
 
-BREW_CASK_TARGETS := amethyst dbeaver-community firefox google-chrome wezterm
+BREW_CASK_TARGETS := amethyst dbeaver-community firefox google-chrome ghostty
 
 FLAKE_TEMPLATE_DIR := ./templates
 FLAKE_GENERATOR := ./scripts/generate-flake
