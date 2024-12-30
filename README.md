@@ -1,4 +1,4 @@
-# dotfiles (March 2024)
+# dotfiles (December 2024)
 Modern dotfiles configuration that documents and sets up my optimal development setup for MacOS and Linux (with specific focus on immutable distros such as Fedora Atomic series and SteamOS).
 
 ## Overview
